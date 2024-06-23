@@ -1,6 +1,6 @@
 const page = () => {
   return (
-    <div className="mx-auto  max-w-7xl">
+    <div className="mx-auto max-w-7xl">
       {/* hero div */}
       <div className="flex">
         {/* left */}
@@ -47,12 +47,12 @@ const page = () => {
         <img
           src="home/illustrator2.png"
           alt="line-1"
-          className="absolute overflow-visible w-72 h-60 -top-28 -left-24"
+          className="absolute overflow-visible w-72 h-60 -top-28 -left-32"
         />
         <img
           src="home/illustrator3.png"
           alt="line-2"
-          className="absolute overflow-visible h-80 w-72 -top-10 -right-24"
+          className="absolute overflow-visible h-80 w-80 -top-10 -right-32"
         />
         <img
           src="home/illustrator4.png"
@@ -118,7 +118,7 @@ const page = () => {
           journey
         </h1>
         {/* content */}
-        <div className="mt-32 space-y-8">
+        <div className="mt-32 space-y-6">
           <div className="flex items-center gap-72 ">
             <div className="w-1/2 space-y-2">
               <h1 className="text-3xl font-bold text-brown ">

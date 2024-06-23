@@ -16,7 +16,6 @@ export default function RootLayout({ children }) {
       <body className={arvo.className}>
         <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );
