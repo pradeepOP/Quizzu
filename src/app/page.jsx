@@ -1,3 +1,4 @@
+import Image from "next/image";
 const page = () => {
   return (
     <div className="w-full px-5 mx-auto max-w-7xl md:px-0">
@@ -23,15 +24,17 @@ const page = () => {
         </div>
         {/* right */}
         <div className="relative mt-8 md:mt-0">
-          <img
-            src="home/illustrator.png"
+          <Image
+            src="/home/illustrator.png"
             alt="illustrator"
             width={642}
             height={602}
           />
-          <img
-            src="home/hero.png"
+          <Image
+            src="/home/hero.png"
             alt="hero-img"
+            width={614}
+            height={413}
             className="absolute top-6 md:top-32 md:left-36"
           />
         </div>
@@ -44,26 +47,32 @@ const page = () => {
         <h2 className=" mt-8 md:mt-16 text-center text-3xl md:text-5xl text-[#230D00]">
           Our Key Features
         </h2>
-        <img
-          src="home/illustrator2.png"
+        <Image
+          src="/home/illustrator2.png"
           alt="line-1"
-          className="absolute hidden overflow-visible md:inline w-72 h-60 -top-28 -left-32"
+          width={314}
+          height={80}
+          className="absolute hidden overflow-visible md:inline -top-28 -left-32"
         />
-        <img
-          src="home/illustrator3.png"
+        <Image
+          src="/home/illustrator3.png"
           alt="line-2"
-          className="absolute hidden overflow-visible md:inline h-80 w-80 -top-10 -right-32"
+          width={260}
+          height={80}
+          className="absolute hidden overflow-visible md:inline -top-28 -right-28"
         />
-        <img
-          src="home/illustrator4.png"
+        <Image
+          src="/home/illustrator4.png"
           alt="line-2"
-          className="absolute hidden w-64 h-48 overflow-visible md:inline -bottom-48 -right-24"
+          width={219}
+          height={46}
+          className="absolute hidden overflow-visible md:inline -bottom-56 -right-32"
         />
 
         <div className="flex flex-col gap-8 mt-16 md:gap-16 md:mt-32 md:flex-row">
           <div className="w-4/5 mx-auto">
-            <img
-              src="home/icon1.svg"
+            <Image
+              src="/home/icon1.svg"
               alt="icon-1"
               width={106}
               height={106}
@@ -78,8 +87,8 @@ const page = () => {
             </p>
           </div>
           <div className="w-4/5 mx-auto">
-            <img
-              src="home/icon2.svg"
+            <Image
+              src="/home/icon2.svg"
               alt="icon-1"
               width={106}
               height={106}
@@ -94,8 +103,8 @@ const page = () => {
             </p>
           </div>
           <div className="w-4/5 mx-auto">
-            <img
-              src="home/icon3.svg"
+            <Image
+              src="/home/icon3.svg"
               alt="icon-1"
               width={106}
               height={106}
@@ -129,10 +138,12 @@ const page = () => {
                 progress and customize your learning experience.
               </p>
             </div>
-            <img
-              src="home/icon4.png"
+            <Image
+              src="/home/icon4.png"
               alt="icon-4"
-              className="md:w-[127px] w-[80px] "
+              width={80}
+              height={73}
+              className="md:w-[127px]"
             />
           </div>
           <div className="flex items-center md:justify-between ">
@@ -145,10 +156,12 @@ const page = () => {
                 preparing for.
               </p>
             </div>
-            <img
-              src="home/icon5.png"
+            <Image
+              src="/home/icon5.png"
               alt="icon-4"
-              className="md:w-[127px] w-[80px] "
+              width={80}
+              height={73}
+              className="md:w-[127px]  "
             />
           </div>
           <div className="flex items-center md:gap-72 ">
@@ -161,10 +174,12 @@ const page = () => {
                 for improvement.
               </p>
             </div>
-            <img
-              src="home/icon6.png"
+            <Image
+              src="/home/icon6.png"
               alt="icon-4"
-              className="md:w-[127px] w-[80px] "
+              width={80}
+              height={73}
+              className="md:w-[127px] "
             />
           </div>
           <div className="flex items-center md:justify-between ">
@@ -178,10 +193,12 @@ const page = () => {
                 language learning goals.
               </p>
             </div>
-            <img
-              src="home/icon7.png"
+            <Image
+              src="/home/icon7.png"
               alt="icon-4"
-              className="md:w-[110px] w-[70px]"
+              width={70}
+              height={73}
+              className="md:w-[110px] "
             />
           </div>
         </div>

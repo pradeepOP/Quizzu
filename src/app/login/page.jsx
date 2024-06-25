@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 const Login = () => {
   return (
     <div className="flex flex-col w-full gap-20 px-5 pb-40 mx-auto mt-8 md:mt-16 md:flex-row max-w-7xl md:px-0">
       {/* left div with image  */}
       <div className="hidden md:inline">
-        <img src="/login.png" alt="login" className="w-[526px] h-[594px] " />
+        <Image src="/login.png" alt="login" width={526} height={594} />
       </div>
       {/* right div with forms */}
       <div>
@@ -12,7 +13,7 @@ const Login = () => {
           Welcome Back,You have been missed
         </h1>
         <form className="mt-8 md:mt-20">
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 mb-9 border-primary">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mb-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Email Address
             </label>
@@ -22,7 +23,7 @@ const Login = () => {
               placeholder="pradeepkazi38@gmail.com"
             />
           </div>
-          <div className="flex flex-col h-20 px-5 py-3 bg-white">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Password
             </label>

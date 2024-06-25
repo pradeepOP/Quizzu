@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -10,10 +11,16 @@ const Navbar = () => {
     <div className="flex items-center justify-between w-full px-4 pt-10 mx-auto text-black md:px-0 max-w-7xl ">
       {/* logo */}
       <Link href="/">
-        <img src="/logo.png" width={158} height={79} alt="" className="z-20" />
+        <Image
+          src="/logo.png"
+          width={158}
+          height={79}
+          alt=""
+          className="z-20"
+        />
       </Link>
       {/* hamburgerIcon */}
-      <button onClick={toggleHamburger} className="z-50 text-2xl">
+      <button onClick={toggleHamburger} className="z-50 text-2xl md:hidden">
         {show ? <FaTimes /> : <FaBars />}
       </button>
       {/* mobile screen */}

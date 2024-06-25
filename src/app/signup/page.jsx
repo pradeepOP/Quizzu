@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 const Signup = () => {
   return (
     <div className="flex flex-col w-full gap-20 px-5 pb-40 mx-auto mt-8 md:flex-row md:px-0 md:mt-16 max-w-7xl">
       {/* left div with image  */}
       <div className="hidden md:inline">
-        <img src="/login.png" alt="login" width={526} height={594} />
+        <Image src="/login.png" alt="login" width={526} height={594} />
       </div>
       {/* right div with forms */}
       <div>
@@ -12,17 +13,17 @@ const Signup = () => {
           Hello User, you will have a great <br /> journey
         </h1>
         <form className="mt-6">
-          <div className="flex flex-col h-20 px-5 py-3 bg-white mb-9 ">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mb-9 focus-within:border-primary ">
             <label className="italic font-bold md:text-xl text-brown">
               Full Name
             </label>
             <input
               type="text"
               className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xlfont-bold italic md:text-xl text-[#122738]"
-              placeholder="Full Name"
+              placeholder="Pradeep Chhetri"
             />
           </div>
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 mb-9 border-primary">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mb-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Email Address
             </label>
@@ -32,7 +33,7 @@ const Signup = () => {
               placeholder="pradeepkazi38@gmail.com"
             />
           </div>
-          <div className="flex flex-col h-20 px-5 py-3 bg-white">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Password
             </label>

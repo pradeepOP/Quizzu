@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 const ForgetPassword = () => {
   return (
     <div className="flex flex-col gap-20 px-5 pb-40 mx-auto mt-10 md:px-0 md:mt-16 md:flex-row max-w-7xl">
       {/* left div with image  */}
       <div className="hidden md:inline">
-        <img src="/login.png" alt="login" width={526} height={594} />
+        <Image src="/login.png" alt="login" width={526} height={594} />
       </div>
       {/* right div with forms */}
       <div>
@@ -13,7 +14,7 @@ const ForgetPassword = () => {
         </h1>
         {/* form */}
         <form className="mt-8 md:mt-16">
-          <div className="flex flex-col h-20 px-5 py-3 mb-4 bg-white border-l-4 border-primary">
+          <div className="flex flex-col h-20 px-5 py-3 mb-4 bg-white border-l-4 border-transparent focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Email Address
             </label>
@@ -31,7 +32,7 @@ const ForgetPassword = () => {
         </form>
 
         {/* OTP code */}
-        <div className="flex flex-col h-20 px-5 py-3 mt-6 bg-white md:mt-20">
+        <div className="flex flex-col h-20 px-5 py-3 mt-6 bg-white border-l-4 border-transparent md:mt-20 focus-within:border-primary">
           <label
             htmlFor=""
             className="font-bold text-[#2F3336] italic md:text-xl">
