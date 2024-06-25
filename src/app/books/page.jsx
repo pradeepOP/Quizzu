@@ -6,7 +6,7 @@ const Books = () => {
       <h1 className="text-[#0E0F0F] font-bold text-3xl md:text-5xl">
         Quizzu Library
       </h1>
-      <div className="grid mt-16 md:grid-cols-3 gap-x-6 gap-y-20">
+      <div className="grid mt-16 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-20">
         <BookCard />
         <BookCard />
         <BookCard />

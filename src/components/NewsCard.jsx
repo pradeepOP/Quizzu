@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 const NewsCard = () => {
   return (
     <div className="max-w-[1140px] max-h-[528px]  ">
@@ -23,9 +24,11 @@ const NewsCard = () => {
           Professor Rajan Shrestha from the Institute of Engineering, Tribhuvan
           University.
         </p>
-        <button className="my-4 bg-[#063173] hover:bg-[#012b6d] duration-300 text-white font-bold px-7 py-3 rounded-xl">
-          Read More
-        </button>
+        <Link href="/news/1">
+          <button className="my-4 bg-[#063173] hover:bg-[#012b6d] duration-300 text-white font-bold px-7 py-3 rounded-xl">
+            Read More
+          </button>
+        </Link>
       </div>
     </div>
   );
