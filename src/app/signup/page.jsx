@@ -1,6 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { useAuth } from "@/context/userContext";
+
 const Signup = () => {
+  const { isAuthenticated, user } = useAuth();
+
+  if (isAuthenticated && user) {
+    redirect("/");
+  }
+
   return (
     <div className="flex flex-col w-full gap-20 px-5 pb-40 mx-auto mt-8 md:flex-row md:px-0 md:mt-16 max-w-7xl">
       {/* left div with image  */}

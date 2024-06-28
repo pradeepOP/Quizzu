@@ -6,11 +6,17 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
+import { useAuth } from "@/context/userContext";
 
 const Login = () => {
+  const { isAuthenticated, user } = useAuth();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
+
+  if (isAuthenticated && user) {
+    redirect("/");
+  }
 
   const initialValues = {
     email: "",

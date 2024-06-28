@@ -2,7 +2,7 @@ import { Arvo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { AuthProvider } from "@/context/useContext";
+import { AuthProvider } from "@/context/userContext";
 
 const arvo = Arvo({ weight: "400", subsets: ["latin"] });
 

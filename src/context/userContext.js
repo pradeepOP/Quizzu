@@ -20,8 +20,7 @@ export const AuthProvider = ({ children }) => {
       try {
         setLoading(true);
         const res = await ApiRequest.get("/user/me");
-        console.log(res);
-        setUser(res.data.user);
+        setUser(res.data.data.user);
         setIsAuthenticated(true);
       } catch (error) {
         setUser({});
