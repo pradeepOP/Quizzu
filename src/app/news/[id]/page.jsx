@@ -21,37 +21,37 @@ const NewsDetail = () => {
             January 23, 2024 - Thursday
           </p>
           <p className="text-[#454D55] md:text-xl mt-4 md:mt-8 pb-6">
-            January 23, 2024- Thursday "Engineering is not just about
+            "Engineering is not just about theoretical knowledge; it’s about
+            applying that knowledge to solve real-world problems," explained
+            Professor Rajan Shrestha from the Institute of Engineering,
+            Tribhuvan University. Kathmandu, Nepal (May 30, 2024) — The
+            Engineering Entrance Exam (EEE) in Nepal will now include a
+            practical skills assessment component, aiming to better evaluate
+            candidates' hands-on abilities and technical knowledge. The
+            introduction of practical assessments marks a significant shift from
+            the traditional theoretical focus of the EEE. "Engineering is not
+            just about theoretical knowledge; it’s about applying that knowledge
+            to solve real-world problems," explained Professor Rajan Shrestha
+            from the Institute of Engineering, Tribhuvan University. "The new
+            practical component will help us identify students who are not only
+            academically proficient but also skilled in practical applications,
+            which is crucial for their future careers." Kathmandu, Nepal (May
+            30, 2024) — The Engineering Entrance Exam (EEE) in Nepal will now
+            include a practical skills assessment component, aiming to better
+            evaluate candidates' hands-on abilities and technical knowledge. The
+            introduction of practical assessments marks a significant shift from
+            the traditional theoretical focus of the EEE. The introduction of
+            practical assessments marks a significant shift from the traditional
+            theoretical focus of the EEE. "Engineering is not just about
             theoretical knowledge; it’s about applying that knowledge to solve
             real-world problems," explained Professor Rajan Shrestha from the
-            Institute of Engineering, Tribhuvan University. Kathmandu, Nepal
-            (May 30, 2024) — The Engineering Entrance Exam (EEE) in Nepal will
-            now include a practical skills assessment component, aiming to
-            better evaluate candidates' hands-on abilities and technical
-            knowledge. The introduction of practical assessments marks a
-            significant shift from the traditional theoretical focus of the EEE.
-            "Engineering is not just about theoretical knowledge; it’s about
-            applying that knowledge to solve real-world problems," explained
-            Professor Rajan Shrestha from the Institute of Engineering,
-            Tribhuvan University. "The new practical component will help us
-            identify students who are not only academically proficient but also
-            skilled in practical applications, which is crucial for their future
-            careers." Kathmandu, Nepal (May 30, 2024) — The Engineering Entrance
-            Exam (EEE) in Nepal will now include a practical skills assessment
-            component, aiming to better evaluate candidates' hands-on abilities
-            and technical knowledge. The introduction of practical assessments
-            marks a significant shift from the traditional theoretical focus of
-            the EEE. The introduction of practical assessments marks a
-            significant shift from the traditional theoretical focus of the EEE.
-            "Engineering is not just about theoretical knowledge; it’s about
-            applying that knowledge to solve real-world problems," explained
-            Professor Rajan Shrestha from the Institute of Engineering,
-            Tribhuvan University. "The new practical component will help us
-            identify students who are not only academically proficient but also
-            skilled in practical applications, which is crucial for their future
-            careers." The new practical component will help us identify students
-            who are not only academically proficient but also skilled in
-            practical applications, which is crucial for their future careers."
+            Institute of Engineering, Tribhuvan University. "The new practical
+            component will help us identify students who are not only
+            academically proficient but also skilled in practical applications,
+            which is crucial for their future careers." The new practical
+            component will help us identify students who are not only
+            academically proficient but also skilled in practical applications,
+            which is crucial for their future careers."
           </p>
         </div>
       </div>

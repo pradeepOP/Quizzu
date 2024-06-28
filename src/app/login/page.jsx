@@ -1,6 +1,41 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useFormik } from "formik";
+import { loginSchema } from "@/schemas";
+import ApiRequest from "@/utils/apiRequest";
+import { useRouter } from "next/navigation";
+
 const Login = () => {
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: async (values) => {
+        try {
+          setErrorMessage("");
+          const res = await ApiRequest.post("/user/login", values);
+
+          if (!res.ok) {
+            setErrorMessage(res.data?.error);
+          }
+          if (res.status === 200) {
+            router.push("/");
+          }
+        } catch (error) {
+          setErrorMessage(error.response?.data?.message);
+        }
+      },
+    });
   return (
     <div className="flex flex-col w-full gap-20 px-5 pb-40 mx-auto mt-8 md:mt-16 md:flex-row max-w-7xl md:px-0">
       {/* left div with image  */}
@@ -12,8 +47,8 @@ const Login = () => {
         <h1 className="text-xl italic font-bold md:text-3xl text-brown">
           Welcome Back,You have been missed
         </h1>
-        <form className="mt-8 md:mt-20">
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mb-9 focus-within:border-primary">
+        <form onSubmit={handleSubmit} className="mt-8 md:mt-20">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Email Address
             </label>
@@ -21,18 +56,40 @@ const Login = () => {
               type="email"
               className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
               placeholder="pradeepkazi38@gmail.com"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
-            <label className="italic font-bold md:text-xl text-brown">
+          {errors.email && touched.email ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errors.email}
+            </p>
+          ) : (
+            <></>
+          )}
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
+            <label className="italic font-bold md:text-xl text-brown ">
               Password
             </label>
             <input
               type="password"
               className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738] placeholder:text-xl"
               placeholder="****************"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
+          {errors.password && touched.password ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errors.password}
+            </p>
+          ) : (
+            <></>
+          )}
           {/* check box and forget password */}
           <div className="flex items-center justify-between pt-9">
             <div>
@@ -49,8 +106,18 @@ const Login = () => {
               </p>
             </Link>
           </div>
+          {errorMessage ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errorMessage}
+            </p>
+          ) : (
+            <></>
+          )}
+
           <div className="mt-12 space-x-16 md:mt-14">
-            <button className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
+            <button
+              type="submit"
+              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
               Login
             </button>
             <Link href="/signup">
