@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer2 from "@/components/Footer2";
 import { AuthProvider } from "@/context/userContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const arvo = Arvo({ weight: "400", subsets: ["latin"] });
 
@@ -18,6 +20,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <Navbar />
           {children}
+          <ToastContainer position="top-center" />
           <Footer2 />
         </AuthProvider>
       </body>

@@ -10,8 +10,9 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
 
-  console.log(isAuthenticated, user);
+  // console.log(isAuthenticated, user);
   const router = useRouter();
+  //promise pending toastify
 
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -114,7 +115,8 @@ const Navbar = () => {
                 onClick={() => {
                   handleLogout();
                   toggleHamburger();
-                }}>
+                }}
+              >
                 Logout
               </button>
             ) : (
@@ -155,12 +157,13 @@ const Navbar = () => {
         {isAuthenticated && user ? (
           <div
             className="relative flex items-center gap-4 cursor-pointer"
-            onClick={toggleDropdown}>
-            <img
+            onClick={toggleDropdown}
+          >
+            <Image
               src={user.avatar}
               width={48}
               height={48}
-              className="rounded-full"
+              className="rounded-full object-cover w-12 h-12"
               alt="User Avatar"
             />
             {dropdown && (
@@ -175,7 +178,8 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200">
+                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200"
+                >
                   Logout
                 </button>
               </div>
