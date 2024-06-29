@@ -36,7 +36,8 @@ const Profile = () => {
                   ? "bg-[#E5EFFF] border-[#C40031]"
                   : "border-transparent "
               } `}
-              onClick={() => setActiveTab("profile")}>
+              onClick={() => setActiveTab("profile")}
+            >
               Profile
             </p>
 
@@ -46,7 +47,8 @@ const Profile = () => {
                   ? "bg-[#E5EFFF]  border-[#C40031]"
                   : "border-transparent "
               } `}
-              onClick={() => setActiveTab("changePassword")}>
+              onClick={() => setActiveTab("changePassword")}
+            >
               Change Password
             </p>
 
@@ -56,7 +58,8 @@ const Profile = () => {
                   ? "bg-[#E5EFFF]  border-[#C40031]"
                   : "border-transparent "
               } `}
-              onClick={() => setActiveTab("exam-detail")}>
+              onClick={() => setActiveTab("exam-detail")}
+            >
               Exam Details
             </p>
           </div>
