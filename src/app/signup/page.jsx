@@ -1,14 +1,47 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useAuth } from "@/context/userContext";
+import { useState } from "react";
+import { useFormik } from "formik";
+import { registerSchema } from "@/schemas";
+import ApiRequest from "@/utils/apiRequest";
 
 const Signup = () => {
   const { isAuthenticated, user } = useAuth();
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
 
   if (isAuthenticated && user) {
     redirect("/");
   }
+  const initialValues = {
+    fullname: "",
+    email: "",
+    password: "",
+  };
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: registerSchema,
+      onSubmit: async (values) => {
+        try {
+          setErrorMessage("");
+          const res = await ApiRequest.post("/user/register", values);
+          if (!res.ok) {
+            setErrorMessage(res.data?.error);
+          }
+          if (res.status === 200) {
+            // TODO: redirect to profile page
+            router.push("/");
+          }
+        } catch (error) {
+          setErrorMessage(error.response?.data?.message);
+        }
+      },
+    });
 
   return (
     <div className="flex flex-col w-full gap-20 px-5 pb-40 mx-auto mt-8 md:flex-row md:px-0 md:mt-16 max-w-7xl">
@@ -21,18 +54,29 @@ const Signup = () => {
         <h1 className="text-xl italic font-bold md:text-3xl text-brown">
           Hello User, you will have a great <br /> journey
         </h1>
-        <form className="mt-6">
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mb-9 focus-within:border-primary ">
+        <form onSubmit={handleSubmit} className="mt-6">
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary ">
             <label className="italic font-bold md:text-xl text-brown">
               Full Name
             </label>
             <input
               type="text"
-              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xlfont-bold italic md:text-xl text-[#122738]"
+              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
               placeholder="Pradeep Chhetri"
+              name="fullname"
+              value={values.fullname}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mb-9 focus-within:border-primary">
+          {errors.fullname && touched.fullname ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errors.fullname}
+            </p>
+          ) : (
+            <></>
+          )}
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Email Address
             </label>
@@ -40,9 +84,20 @@ const Signup = () => {
               type="email"
               className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
               placeholder="pradeepkazi38@gmail.com"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
+          {errors.email && touched.email ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errors.email}
+            </p>
+          ) : (
+            <></>
+          )}
+          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Password
             </label>
@@ -50,11 +105,30 @@ const Signup = () => {
               type="password"
               className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
               placeholder="****************"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
-
+          {errors.password && touched.password ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errors.password}
+            </p>
+          ) : (
+            <></>
+          )}
+          {errorMessage ? (
+            <p className="px-4 mt-2 text-lg italic text-red-500">
+              {errorMessage}
+            </p>
+          ) : (
+            <></>
+          )}
           <div className="mt-6 space-x-16">
-            <button className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
+            <button
+              type="submit"
+              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
               Signup
             </button>
             <Link href="/login">
