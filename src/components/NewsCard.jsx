@@ -21,10 +21,10 @@ const NewsCard = () => {
           Assessment
         </h1>
         <p className="text-[#454D55] md:text-xl mt-4 md:mt-8">
-          "Engineering is not just about theoretical knowledge; it’s about
-          applying that knowledge to solve real-world problems," explained
-          Professor Rajan Shrestha from the Institute of Engineering, Tribhuvan
-          University.
+          &quot;Engineering is not just about theoretical knowledge; it&apos;s
+          about applying that knowledge to solve real-world problems,&apos;
+          explained Professor Rajan Shrestha from the Institute of Engineering,
+          Tribhuvan University. &quot;
         </p>
         <Link href="/news/1">
           <button className="my-4 bg-[#063173] hover:bg-[#012b6d] duration-300 text-white font-bold px-7 py-3 rounded-xl">
