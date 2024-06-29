@@ -14,6 +14,7 @@ const NewsDetail = () => {
           src="/barca.jpg"
           width={1280}
           height={300}
+          alt="news image"
           className="object-top object-cover rounded-t-xl  max-h-[300px]"
         />
         <div className="px-4 bg-white rounded-b-xl">

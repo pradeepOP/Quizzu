@@ -6,7 +6,7 @@ const BookDetail = () => {
         {/* left div */}
         <div className=" flex w-60 md:flex-col gap-12 mt-4 md:mt-0 items-center md:border-r-2  border-[#BBD6FF]">
           <div className="w-4/5 mx-auto md:mt-10">
-            <Image src="/book.png" width={162} height={243} />
+            <Image src="/book.png" alt="book image" width={162} height={243} />
           </div>
           <div className="flex flex-col gap-4 mx-auto md:w-4/5 md:gap-9">
             <p className="text-[#0E0F0F] ">Author’s Name</p>

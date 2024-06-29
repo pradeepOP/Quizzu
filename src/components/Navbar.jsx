@@ -63,7 +63,7 @@ const Navbar = () => {
           src="/logo.png"
           width={158}
           height={79}
-          alt=""
+          alt="logo"
           className="z-20"
         />
       </Link>
@@ -115,8 +115,7 @@ const Navbar = () => {
                 onClick={() => {
                   handleLogout();
                   toggleHamburger();
-                }}
-              >
+                }}>
                 Logout
               </button>
             ) : (
@@ -157,13 +156,12 @@ const Navbar = () => {
         {isAuthenticated && user ? (
           <div
             className="relative flex items-center gap-4 cursor-pointer"
-            onClick={toggleDropdown}
-          >
+            onClick={toggleDropdown}>
             <Image
               src={user.avatar}
               width={48}
               height={48}
-              className="rounded-full object-cover w-12 h-12"
+              className="object-cover w-12 h-12 rounded-full"
               alt="User Avatar"
             />
             {dropdown && (
@@ -178,8 +176,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200"
-                >
+                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200">
                   Logout
                 </button>
               </div>
