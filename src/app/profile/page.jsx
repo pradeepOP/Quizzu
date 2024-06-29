@@ -25,7 +25,7 @@ const Profile = () => {
                 className="w-[129px] h-[129px] rounded-full mx-auto object-cover"
               />
               <p className="text-center text-[#0E0F0F] font-semibold">
-                {user.fullname || "Sandip muji"}
+                {user.fullname}
               </p>
             </>
           )}

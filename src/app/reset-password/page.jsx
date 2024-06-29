@@ -4,40 +4,34 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useFormik } from "formik";
-import { loginSchema } from "@/schemas";
+import { loginSchema, resetPasswordSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 import { useRouter, redirect } from "next/navigation";
 import { useAuth } from "@/context/userContext";
 
-const Login = () => {
+const ResetPassword = () => {
   const { isAuthenticated, user } = useAuth();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
 
-  if (isAuthenticated && user) {
-    redirect("/");
+  if (!isAuthenticated && !user) {
+    redirect("/login");
   }
 
   const initialValues = {
-    email: "",
-    password: "",
+    newPassword: "",
+    confirmPassword: "",
   };
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: loginSchema,
+      validationSchema: resetPasswordSchema,
       onSubmit: async (values) => {
         try {
           setErrorMessage("");
-          const res = await ApiRequest.post("/user/login", values);
+          const res = await ApiRequest.post("/user/reset-password", values);
 
-          if (!res.ok) {
-            setErrorMessage(res.data?.error);
-          }
-          if (res.status === 200) {
-            window.location.reload();
-            router.push("/");
-          }
+          router.push("/");
         } catch (error) {
           setErrorMessage(error.response?.data?.message);
         }
@@ -52,68 +46,52 @@ const Login = () => {
       {/* right div with forms */}
       <div>
         <h1 className="text-xl italic font-bold md:text-3xl text-brown">
-          Welcome Back,You have been missed
+          Reset Your Password!
         </h1>
+        <h6 className="mt-2">Dont forget your password next time!</h6>
         <form onSubmit={handleSubmit} className="mt-8 md:mt-20">
           <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
-              Email Address
+              New Password
             </label>
             <input
-              type="email"
+              type="password"
               className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
-              placeholder="pradeepkazi38@gmail.com"
-              name="email"
-              value={values.email}
+              name="newPassword"
+              value={values.newPassword}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </div>
-          {errors.email && touched.email ? (
+          {errors.newPassword && touched.newPassword ? (
             <p className="px-4 mt-2 text-lg italic text-red-500">
-              {errors.email}
+              {errors.newPassword}
             </p>
           ) : (
             <></>
           )}
           <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown ">
-              Password
+              Confirm Password
             </label>
             <input
               type="password"
               className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738] placeholder:text-xl"
-              placeholder="****************"
-              name="password"
-              value={values.password}
+              name="confirmPassword"
+              value={values.confirmPassword}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </div>
-          {errors.password && touched.password ? (
+          {errors.confirmPassword && touched.confirmPassword ? (
             <p className="px-4 mt-2 text-lg italic text-red-500">
-              {errors.password}
+              {errors.confirmPassword}
             </p>
           ) : (
             <></>
           )}
           {/* check box and forget password */}
-          <div className="flex items-center justify-between pt-9">
-            <div>
-              <input type="checkbox" value="" />
-              <label
-                htmlFor=""
-                className="pl-1 text-lg italic font-bold md:text-xl text-brown"
-              >
-                Remember Me
-              </label>
-            </div>
-            <Link href="/forget-password">
-              <p className="text-lg italic font-bold md:text-xl text-brown">
-                Forgot Password?
-              </p>
-            </Link>
-          </div>
+
           {errorMessage ? (
             <p className="px-4 mt-2 text-lg italic text-red-500">
               {errorMessage}
@@ -127,31 +105,12 @@ const Login = () => {
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
             >
-              Login
+              Submit
             </button>
-            <Link href="/signup">
-              <button className="px-4 py-3 md:text-xl italic font-bold bg-[#FFFFFF]  text-[#122738] border-2 border-[#122738]">
-                Signup
-              </button>
-            </Link>
           </div>
         </form>
-
-        {/* login with google and facebook */}
-        <div className="flex items-center justify-between mt-10 md:mt-20">
-          <p className="italic font-bold md:text-xl text-brown">
-            or login with
-          </p>
-
-          <div className="flex gap-12">
-            <p className="text-[#122738] font-bold md:text-xl italic">
-              Facebook
-            </p>
-            <p className="text-[#122738] font-bold md:text-xl italic">Google</p>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
-export default Login;
+export default ResetPassword;
