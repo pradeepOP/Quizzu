@@ -34,3 +34,8 @@ export const changePasswordSchema = yup.object({
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("Confirm Password is required"),
 });
+
+export const profileUpdateSchema = yup.object({
+  fullname: yup.string().required("Required"),
+  phNumber: yup.string().length(10, "Invalid phone number"),
+});

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import ApiRequest from "@/utils/apiRequest";
 import { useAuth } from "@/context/userContext";
 import { toast } from "react-toastify";
+import { profileUpdateSchema } from "@/schemas";
 
 const DashProfile = () => {
   const { user, setUser } = useAuth();
@@ -17,15 +18,10 @@ const DashProfile = () => {
     setOpen(false);
   };
 
-  const validationSchema = Yup.object({
-    fullname: Yup.string().required("Required"),
-    phNumber: Yup.string().length(10, "Invalid phone number"),
-  });
-
   const handleSubmit = async (values) => {
     try {
       const response = await ApiRequest.patch("/user/update-profile", values);
-      console.log(response.data);
+      // console.log(response.data);
       toast.success(response.data.message);
       setUser((prevUser) => ({ ...prevUser, ...values }));
       handleClose();
@@ -62,21 +58,19 @@ const DashProfile = () => {
       </div>
       <button
         onClick={handleClickOpen}
-        className="mt-4 px-8 tracking-wider py-2 bg-blue-500 text-white rounded-md"
-      >
+        className="px-8 py-2 mt-4 tracking-wider text-white bg-blue-500 rounded-md">
         Edit
       </button>
 
       {open && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-md space-y-4 w-11/12 max-w-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="w-11/12 max-w-lg p-6 space-y-4 bg-white rounded-md">
             <div className="flex justify-between">
               <h2 className="text-lg font-bold">Edit Profile</h2>
               <button
                 type="button"
                 onClick={handleClose}
-                className="text-2xl text-[#0E0F0F]"
-              >
+                className="text-2xl text-[#0E0F0F]">
                 x
               </button>
             </div>
@@ -85,9 +79,8 @@ const DashProfile = () => {
                 fullname: user.fullname,
                 phNumber: user.phNumber,
               }}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-            >
+              validationSchema={profileUpdateSchema}
+              onSubmit={handleSubmit}>
               {({ isSubmitting }) => (
                 <Form className="space-y-4">
                   <div>
@@ -97,12 +90,12 @@ const DashProfile = () => {
                     <Field
                       type="text"
                       name="fullname"
-                      className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                      className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     />
                     <ErrorMessage
                       name="fullname"
                       component="div"
-                      className="text-red-500 text-sm"
+                      className="text-sm text-red-500"
                     />
                   </div>
 
@@ -113,20 +106,19 @@ const DashProfile = () => {
                     <Field
                       type="text"
                       name="phNumber"
-                      className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                      className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     />
                     <ErrorMessage
                       name="phNumber"
                       component="div"
-                      className="text-red-500 text-sm"
+                      className="text-sm text-red-500"
                     />
                   </div>
                   <div className="flex justify-end space-x-4">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-4 py-2 bg-blue-500 text-white rounded-md"
-                    >
+                      className="px-4 py-2 text-white bg-blue-500 rounded-md">
                       Save
                     </button>
                   </div>
