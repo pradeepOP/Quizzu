@@ -4,41 +4,47 @@ import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-background mt-20 mb-10 ">
+    <footer className="w-full px-5 mx-auto mt-16 md:mt-24 max-w-7xl md:px-0 bg-background ">
       <div className="container mx-auto">
-        <div className="flex justify-between flex-wrap">
+        <div className="flex flex-wrap justify-between">
           {/* Logo and Description */}
           <div className="w-[380px] mb-6 md:mb-0">
             <div className="flex items-center mb-7">
-              <Image src="/logo.png" alt="Quizu Logo" width={198} height={79} />
+              <Image
+                src="/logo.png"
+                alt="Quizu Logo"
+                width={150}
+                height={75}
+                className="md:w-[198px] md:h-[79px]"
+              />
             </div>
-            <p className="text-gray-700">
+            <p className="text-[#0E0F0F] text-sm md:text-base">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry standard dummy text
               ever.
             </p>
-            <div className="flex space-x-4 mt-4">
+            <div className="flex mt-6 gap-14 md:gap-6">
               <Link href="https://www.facebook.com" aria-label="Facebook">
                 <FaFacebook
-                  className="text-black hover:text-gray-500"
+                  className="text-[#0E0F0F] hover:text-gray-700 duration-300 ease-in"
                   size={24}
                 />
               </Link>
               <Link href="https://www.instagram.com" aria-label="Instagram">
                 <FaInstagram
-                  className="text-black hover:text-gray-500"
+                  className="text-[#0E0F0F] hover:text-gray-700 duration-300 ease-in"
                   size={24}
                 />
               </Link>
               <Link href="https://www.youtube.com" aria-label="YouTube">
                 <FaYoutube
-                  className="text-black hover:text-gray-500"
+                  className="text-[#0E0F0F] hover:text-gray-700 duration-300 ease-in"
                   size={24}
                 />
               </Link>
               <Link href="https://www.twitter.com" aria-label="Twitter">
                 <FaTwitter
-                  className="text-black hover:text-gray-500"
+                  className="text-[#0E0F0F] hover:text-gray-700 duration-300 ease-in"
                   size={24}
                 />
               </Link>
@@ -46,18 +52,18 @@ const Footer = () => {
           </div>
 
           {/* Links Section */}
-          <div className="flex flex-wrap gap-32">
+          <div className="flex flex-wrap mt-4 md:gap-32">
             {/* About Section */}
-            <div className="w-1/2 lg:w-auto mb-6 md:mb-0">
+            <div className="w-1/2 mb-6 tracking-wider lg:w-auto md:mb-0">
               <h2 className="mb-4 text-lg font-bold">About</h2>
-              <ul className="text-gray-700">
-                <li className="mb-2">
+              <ul className="space-y-4 text-[#0E0F0F]">
+                <li className="">
                   <Link href="/">Home</Link>
                 </li>
-                <li className="mb-2">
+                <li className="">
                   <Link href="/about">About</Link>
                 </li>
-                <li className="mb-2">
+                <li className="">
                   <Link href="/news">News & Blogs</Link>
                 </li>
                 <li>
@@ -67,13 +73,13 @@ const Footer = () => {
             </div>
 
             {/* Company Section */}
-            <div className="w-1/2 lg:w-auto mb-6 md:mb-0">
+            <div className="w-1/2 mb-6 lg:w-auto md:mb-0">
               <h2 className="mb-4 text-lg font-bold">Company</h2>
-              <ul className="text-gray-700">
-                <li className="mb-2">
+              <ul className="space-y-4 text-[#0E0F0F]">
+                <li className="">
                   <Link href="#">How we work</Link>
                 </li>
-                <li className="mb-2">
+                <li className="">
                   <Link href="#">Terms of service</Link>
                 </li>
                 <li>
@@ -85,10 +91,10 @@ const Footer = () => {
             {/* Contact Us Section */}
             <div className="w-full lg:w-auto">
               <h2 className="mb-4 text-lg font-bold">Contact Us</h2>
-              <ul className="text-gray-700">
-                <li className="mb-2">Kathmandu, Nepal</li>
-                <li className="mb-2">+977 01 4578961</li>
-                <li className="mb-2">connect@quizu.com.np</li>
+              <ul className="space-y-4  text-[#0E0F0F]">
+                <li className="">Kathmandu, Nepal</li>
+                <li className="">+977 01 4578961</li>
+                <li className="">connect@quizu.com.np</li>
                 <li>quizu.com.np</li>
               </ul>
             </div>

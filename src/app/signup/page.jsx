@@ -30,10 +30,11 @@ const Signup = () => {
         try {
           setErrorMessage("");
           const res = await ApiRequest.post("/user/register", values);
+          console.log(res);
           if (!res.ok) {
             setErrorMessage(res.data?.error);
           }
-          if (res.status === 200) {
+          if (res.status === 201) {
             // TODO: redirect to profile page
             router.push("/");
           }

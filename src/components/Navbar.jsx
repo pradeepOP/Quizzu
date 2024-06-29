@@ -96,7 +96,11 @@ const Navbar = () => {
             </li>
 
             {isAuthenticated ? (
-              <li>Profile</li>
+              <li>
+                <Link href="/profile" onClick={toggleHamburger}>
+                  Profile
+                </Link>
+              </li>
             ) : (
               <li>
                 <Link href="/signup" onClick={toggleHamburger}>
@@ -110,8 +114,7 @@ const Navbar = () => {
                 onClick={() => {
                   handleLogout();
                   toggleHamburger();
-                }}
-              >
+                }}>
                 Logout
               </button>
             ) : (
@@ -152,8 +155,7 @@ const Navbar = () => {
         {isAuthenticated && user ? (
           <div
             className="relative flex items-center gap-4 cursor-pointer"
-            onClick={toggleDropdown}
-          >
+            onClick={toggleDropdown}>
             <img
               src={user.avatar}
               width={48}
@@ -163,18 +165,17 @@ const Navbar = () => {
             />
             {dropdown && (
               <div className="dropdown-content absolute -right-16 top-14 z-10 w-48 p-2 mt-2 bg-[#f5f5f5] border rounded shadow-md">
-                <h6 className="py-2 text-base text-left px-4">
+                <h6 className="px-4 py-2 text-base text-left">
                   {user.fullname}
                 </h6>
                 <Link href="/profile">
-                  <h1 className="block px-4 py-2 text-left text-lg text-black hover:bg-gray-200">
+                  <h1 className="block px-4 py-2 text-lg text-left text-black hover:bg-gray-200">
                     Profile
                   </h1>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200"
-                >
+                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200">
                   Logout
                 </button>
               </div>
