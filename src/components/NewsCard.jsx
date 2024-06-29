@@ -8,6 +8,7 @@ const NewsCard = () => {
           src="/barca.jpg"
           width={1140}
           height={269}
+          alt="News Image"
           className="object-top object-cover rounded-t-xl max-h-[269px]"
         />
       </div>
@@ -16,7 +17,8 @@ const NewsCard = () => {
           January 23, 2024
         </p>
         <h1 className="text-[#000000] font-bold text-xl md:text-4xl mt-4 md:mt-8">
-          Nepal's Engineering Entrance Exam to Feature Practical Assessment
+          Nepal &apos;s Engineering Entrance Exam to Feature Practical
+          Assessment
         </h1>
         <p className="text-[#454D55] md:text-xl mt-4 md:mt-8">
           "Engineering is not just about theoretical knowledge; it’s about

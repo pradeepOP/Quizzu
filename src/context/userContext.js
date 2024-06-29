@@ -7,6 +7,7 @@ import {
   Children,
 } from "react";
 import ApiRequest from "@/utils/apiRequest";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
@@ -34,7 +35,8 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, user, setUser }}>
+      value={{ isAuthenticated, setIsAuthenticated, user, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

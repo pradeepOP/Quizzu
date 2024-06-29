@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-background pt-20 pb-10 ">
+    <footer className="bg-background mt-20 mb-10 ">
       <div className="container mx-auto">
         <div className="flex justify-between flex-wrap">
           {/* Logo and Description */}
@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
 
           {/* Links Section */}
-          <div className="flex flex-wrap gap-16">
+          <div className="flex flex-wrap gap-32">
             {/* About Section */}
             <div className="w-1/2 lg:w-auto mb-6 md:mb-0">
               <h2 className="mb-4 text-lg font-bold">About</h2>
