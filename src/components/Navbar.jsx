@@ -1,32 +1,58 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useAuth } from "@/context/userContext";
 import ApiRequest from "@/utils/apiRequest";
-import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
 
+  console.log(isAuthenticated, user);
+  const router = useRouter();
+
   const [show, setShow] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
 
   const toggleHamburger = () => setShow(!show);
 
-  const handleLougout = async () => {
+  const handleLogout = async () => {
     try {
       const res = await ApiRequest.get("/user/logout");
       if (res.status === 200) {
         setIsAuthenticated(false);
         setUser({});
-        redirect("/");
+        router.push("/");
       }
     } catch (error) {
       setUser({});
       setIsAuthenticated(false);
     }
   };
+
+  const toggleDropdown = () => setDropdown(!dropdown);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".dropdown-content")) {
+        if (dropdown) {
+          setDropdown(false);
+        }
+      }
+    };
+
+    if (dropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdown]);
 
   return (
     <div className="flex items-center justify-between w-full px-4 pt-10 mx-auto text-black md:px-0 max-w-7xl ">
@@ -82,9 +108,10 @@ const Navbar = () => {
             {isAuthenticated ? (
               <button
                 onClick={() => {
-                  handleLougout();
+                  handleLogout();
                   toggleHamburger();
-                }}>
+                }}
+              >
                 Logout
               </button>
             ) : (
@@ -102,7 +129,6 @@ const Navbar = () => {
 
       {/* navigation */}
       <ul className="items-center hidden gap-24 text-xl md:flex">
-        {/* //TODO: add border on active or hover */}
         <li className="">
           <Link href="/">Home</Link>
         </li>
@@ -116,7 +142,7 @@ const Navbar = () => {
           <Link href="/news">News</Link>
         </li>
         {isAuthenticated ? (
-          <button onClick={handleLougout}>Logout</button>
+          <></>
         ) : (
           <li className="">
             <Link href="/signup">Register</Link>
@@ -124,15 +150,35 @@ const Navbar = () => {
         )}
 
         {isAuthenticated && user ? (
-          <div className="flex items-center gap-4">
+          <div
+            className="relative flex items-center gap-4 cursor-pointer"
+            onClick={toggleDropdown}
+          >
             <img
               src={user.avatar}
               width={48}
               height={48}
               className="rounded-full"
+              alt="User Avatar"
             />
-            {/* TODO: add dropdown instead of logout button */}
-            <p className="text-[#063173] font-semibold ">{user.fullname}</p>
+            {dropdown && (
+              <div className="dropdown-content absolute -right-16 top-14 z-10 w-48 p-2 mt-2 bg-[#f5f5f5] border rounded shadow-md">
+                <h6 className="py-2 text-base text-left px-4">
+                  {user.fullname}
+                </h6>
+                <Link href="/profile">
+                  <h1 className="block px-4 py-2 text-left text-lg text-black hover:bg-gray-200">
+                    Profile
+                  </h1>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <li>
@@ -147,4 +193,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;

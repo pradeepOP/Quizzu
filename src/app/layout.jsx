@@ -1,7 +1,7 @@
 import { Arvo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer2 from "@/components/Footer2";
 import { AuthProvider } from "@/context/userContext";
 
 const arvo = Arvo({ weight: "400", subsets: ["latin"] });
@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <Navbar />
           {children}
+          <Footer2 />
         </AuthProvider>
       </body>
     </html>
