@@ -44,19 +44,19 @@ const ResetPassword = () => {
         <Image src="/login.png" alt="login" width={526} height={594} />
       </div>
       {/* right div with forms */}
-      <div>
+      <div className="flex-1 ">
         <h1 className="text-xl italic font-bold md:text-3xl text-brown">
           Reset Your Password!
         </h1>
-        <h6 className="mt-2">Dont forget your password next time!</h6>
-        <form onSubmit={handleSubmit} className="mt-8 md:mt-20">
+        <form onSubmit={handleSubmit} className="mt-8 md:mt-12 md:w-4/5">
           <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               New Password
             </label>
             <input
               type="password"
-              className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
+              placeholder="***********"
+              className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 md:placeholder:text-xl"
               name="newPassword"
               value={values.newPassword}
               onChange={handleChange}
@@ -70,13 +70,14 @@ const ResetPassword = () => {
           ) : (
             <></>
           )}
-          <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
+          <div className="flex flex-col h-20 px-5  py-3 bg-white border-l-4 border-transparent mt-16 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown ">
               Confirm Password
             </label>
             <input
               type="password"
-              className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738] placeholder:text-xl"
+              placeholder="***********"
+              className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 placeholder:text-xl"
               name="confirmPassword"
               value={values.confirmPassword}
               onChange={handleChange}
@@ -100,7 +101,7 @@ const ResetPassword = () => {
             <></>
           )}
 
-          <div className="mt-12 space-x-16 md:mt-14">
+          <div className="mt-12 space-x-16 md:mt-20">
             <button
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
