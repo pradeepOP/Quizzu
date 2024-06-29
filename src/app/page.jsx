@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 const page = () => {
   return (
     <div className="w-full px-5 mx-auto max-w-7xl md:px-0">
@@ -16,9 +17,11 @@ const page = () => {
           </p>
           {/* button  */}
           <div className="flex items-center mt-12 gap-14">
-            <button className="px-6 py-4 text-white font-bold md:text-xl tracking-wide bg-gradient-to-r from-[#122738] to-[#00A778] hover:bg-gradient-to-l  duration-300">
+            <Link
+              href="/exam"
+              className="px-6 py-4 text-white font-bold md:text-xl tracking-wide bg-gradient-to-r from-[#122738] to-[#00A778] hover:bg-gradient-to-l  duration-300">
               Start solving
-            </button>
+            </Link>
             <p className="font-bold text-[#122738] md:text-xl">know more</p>
           </div>
         </div>
