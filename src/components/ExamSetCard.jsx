@@ -1,10 +1,17 @@
 import Image from "next/image";
-const ExamSetCard = () => {
+const ExamSetCard = ({ quiz }) => {
+  console.log(quiz);
   return (
     <div className="rounded-xl w-[365px]  ">
-      <Image src="/setImage.jpeg" width={365} height={325} alt="setImage" />
+      <Image
+        src={quiz.coverImage}
+        width={365}
+        height={325}
+        alt="setImage"
+        className="border-x-2 border-t-2 rounded-t-xl border-gray-400 w-[365px] h-[269px] object-cover"
+      />
       <p className="py-3 text-lg font-bold text-center text-black bg-white rounded-b-xl">
-        Set 1
+        {quiz.title}
       </p>
     </div>
   );

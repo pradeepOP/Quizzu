@@ -1,8 +1,24 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ExamCategoryComoponent from "./ExamCategoryComoponent";
+import ApiRequest from "@/utils/apiRequest";
 
 const HomepageAfterLogin = () => {
+  const [quizSets, setQuizSets] = useState([]);
+
+  const fetchQuizSets = async () => {
+    try {
+      const res = await ApiRequest.get("/category");
+      console.log(res.data.data.categories);
+      setQuizSets(res?.data?.data?.categories);
+    } catch (error) {
+      console.error("Error fetching quiz sets:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuizSets();
+  }, []);
   return (
     <div className="w-full px-5 mx-auto max-w-[1140px] md:px-0">
       {/* container */}
@@ -116,9 +132,9 @@ const HomepageAfterLogin = () => {
         {/* exam category */}
         <div className="space-y-16 mt-14">
           {/* category card */}
-          <ExamCategoryComoponent />
-          <ExamCategoryComoponent />
-          <ExamCategoryComoponent />
+          {quizSets.map((category) => (
+            <ExamCategoryComoponent key={category.id} category={category} />
+          ))}
         </div>
       </div>
     </div>
