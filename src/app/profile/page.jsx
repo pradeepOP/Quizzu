@@ -86,8 +86,7 @@ const Profile = () => {
 
                 <label
                   htmlFor="profileImageInput"
-                  className="absolute bottom-6 right-1/2 transform translate-x-1/2 cursor-pointer"
-                >
+                  className="absolute transform translate-x-1/2 cursor-pointer bottom-6 right-1/2">
                   <Image
                     src="/profileIcon.png"
                     alt="profile"
@@ -112,10 +111,9 @@ const Profile = () => {
                 className={`px-6 py-3 cursor-pointer border-l-4  ${
                   activeTab === "profile"
                     ? "bg-[#E5EFFF] border-[#C40031]"
-                    : "border-transparent"
-                }`}
-                onClick={() => setActiveTab("profile")}
-              >
+                    : "border-transparent "
+                } `}
+                onClick={() => setActiveTab("profile")}>
                 Profile
               </p>
 
@@ -125,8 +123,7 @@ const Profile = () => {
                     ? "bg-[#E5EFFF] border-[#C40031]"
                     : "border-transparent"
                 }`}
-                onClick={() => setActiveTab("changePassword")}
-              >
+                onClick={() => setActiveTab("changePassword")}>
                 Change Password
               </p>
 
@@ -136,8 +133,7 @@ const Profile = () => {
                     ? "bg-[#E5EFFF] border-[#C40031]"
                     : "border-transparent"
                 }`}
-                onClick={() => setActiveTab("exam-detail")}
-              >
+                onClick={() => setActiveTab("exam-detail")}>
                 Exam Details
               </p>
             </div>

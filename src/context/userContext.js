@@ -42,8 +42,7 @@ export const AuthProvider = ({ children }) => {
         setUser,
         loading,
         setLoading,
-      }}
-    >
+      }}>
       {children}
     </AuthContext.Provider>
   );
