@@ -11,7 +11,7 @@ const QuestionCard = () => {
 
   return (
     <div className="pl-6 pt-7">
-      <h1 className="text-[#0E0F0F] text-2xl font-bold">
+      <h1 className="text-[#0E0F0F] text-xl md:text-2xl font-bold">
         1. Which country flag is shown in the picture below?
       </h1>
       <Image

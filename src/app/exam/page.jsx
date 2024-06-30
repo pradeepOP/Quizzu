@@ -4,12 +4,12 @@ import { MdSkipPrevious, MdSkipNext } from "react-icons/md";
 
 const Exam = () => {
   return (
-    <div className="w-full h-[800px] max-w-6xl px-5 mx-auto my-10 md:px-0">
-      <h1 className="mt-12 text-[#0E0F0F] text-5xl font-bold">
+    <div className="w-full h-full md:h-[800px] max-w-6xl px-5 mx-auto my-10 md:px-0">
+      <h1 className="mt-12 text-[#0E0F0F] text-3xl md:text-5xl font-bold">
         EPS-Topik <span className="text-[#C40031]"> Set 1</span>
       </h1>
       {/* container */}
-      <div className="bg-[#F7F7F7] h-[736px] mt-20 border-2 border-[#BBD6FF] rounded-xl flex flex-col md:flex-row">
+      <div className="bg-[#F7F7F7] md:h-[736px] mt-10 md:mt-20 border-2 border-[#BBD6FF] rounded-xl flex flex-col md:flex-row">
         {/* left div */}
         <div className="w-[265px] h-full md:border-r-2 border-[#BBD6FF] pt-6 mx-auto">
           <Image
@@ -151,7 +151,7 @@ const Exam = () => {
             </button>
           </div>
 
-          <div className="flex justify-end mt-32 mr-12">
+          <div className="flex justify-end mt-32 mb-4 mr-12">
             <button className=" text-white bg-[#063173] py-3 px-6 rounded-xl">
               Submit
             </button>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 const About = () => {
   return (
     <div className="w-full px-5 mx-auto max-w-7xl md:px-0">
@@ -19,9 +20,11 @@ const About = () => {
             real-time performance analytics.
           </p>
           <div className="flex items-center mt-12 gap-14">
-            <button className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738]">
+            <Link
+              href="/"
+              className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738]">
               Start solving
-            </button>
+            </Link>
             <p className="font-bold text-[#2E80FF] md:text-xl">Need help?</p>
           </div>
         </div>
