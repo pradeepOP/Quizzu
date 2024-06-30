@@ -6,17 +6,15 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
-import { useRouter, redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/userContext";
 
 const Login = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, setUser, user, setIsAuthenticated } = useAuth();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
 
-  if (isAuthenticated && user) {
-    redirect("/");
-  }
+  console.log(isAuthenticated, user);
 
   const initialValues = {
     email: "",
@@ -31,28 +29,32 @@ const Login = () => {
           setErrorMessage("");
           const res = await ApiRequest.post("/user/login", values);
 
-          if (!res.ok) {
-            setErrorMessage(res.data?.error);
-          }
-          if (res.status === 200) {
-            window.location.reload();
-            router.push("/");
-          }
+          const { loggedInUser } = res?.data?.data;
+          setUser(loggedInUser);
+          setIsAuthenticated(true);
+          router.push("/");
         } catch (error) {
+          setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
         }
       },
     });
+
+  if (isAuthenticated && user) {
+    router.push("/");
+    return null;
+  }
+
   return (
     <div className="flex flex-col w-full gap-20 px-5 pb-40 mx-auto mt-8 md:mt-16 md:flex-row max-w-7xl md:px-0">
-      {/* left div with image  */}
+      {/* left div with image */}
       <div className="hidden md:inline">
         <Image src="/login.png" alt="login" width={526} height={594} />
       </div>
       {/* right div with forms */}
       <div>
         <h1 className="text-xl italic font-bold md:text-3xl text-brown">
-          Welcome Back,You have been missed
+          Welcome Back, You have been missed
         </h1>
         <form onSubmit={handleSubmit} className="mt-8 md:mt-20">
           <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent focus-within:border-primary">

@@ -10,9 +10,7 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
 
-  // console.log(isAuthenticated, user);
   const router = useRouter();
-  //promise pending toastify
 
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState(false);
