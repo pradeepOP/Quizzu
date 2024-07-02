@@ -7,7 +7,6 @@ import {
   Children,
 } from "react";
 import ApiRequest from "@/utils/apiRequest";
-import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
@@ -16,27 +15,34 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
 
+  const fetchUser = async () => {
+    try {
+      setLoading(true);
+      const res = await ApiRequest.get("/user/me");
+      setUser(res?.data?.data?.user);
+      setIsAuthenticated(true);
+    } catch (error) {
+      setUser({});
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setLoading(true);
-        const res = await ApiRequest.get("/user/me");
-        setUser(res.data.data.user);
-        setIsAuthenticated(true);
-      } catch (error) {
-        setUser({});
-        setIsAuthenticated(false);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchUser();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, user, setUser }}
-    >
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        user,
+        setUser,
+        loading,
+        setLoading,
+      }}>
       {children}
     </AuthContext.Provider>
   );

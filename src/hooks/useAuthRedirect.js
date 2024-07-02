@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/userContext";
 
-const useAuthRedirect = (redirectTo) => {
+const useAuthRedirect = () => {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
 
