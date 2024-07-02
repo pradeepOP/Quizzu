@@ -35,7 +35,7 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
       <form className="mt-6">
         <div className="grid place-self-center grid-1 md:grid-cols-2 gap-y-8">
           {question?.options?.map((option, index) => (
-            <div className="flex items-center space-x-2">
+            <div key={index} className="flex items-center space-x-2">
               <input
                 type="radio"
                 id={`option${index}`}

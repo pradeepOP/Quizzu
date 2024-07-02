@@ -187,7 +187,6 @@ const Exam = () => {
           {/* Question card */}
           {currentQuestion && (
             <QuestionCard
-              key={currentQuestionIndex}
               question={currentQuestion}
               onOptionSelect={handleOptionSelect}
               questionIndex={currentQuestionIndex}
