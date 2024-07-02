@@ -3,7 +3,7 @@ import Link from "next/link";
 const ExamSetCard = ({ quiz }) => {
   console.log(quiz);
   return (
-    <Link href="/exam">
+    <Link href={`/exam/${quiz._id}`}>
       <div className="rounded-xl w-[365px]  ">
         <Image
           src={quiz.coverImage}
