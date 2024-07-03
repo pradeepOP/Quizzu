@@ -31,6 +31,10 @@ const Login = () => {
 
           const { loggedInUser } = res?.data?.data;
           setUser(loggedInUser);
+          localStorage.setItem(
+            "token",
+            JSON.stringify(res?.data?.data?.accessToken)
+          );
           setIsAuthenticated(true);
           router.push("/");
         } catch (error) {
@@ -64,7 +68,7 @@ const Login = () => {
             <input
               type="email"
               className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
-              placeholder="pradeepkazi38@gmail.com"
+              placeholder="name@company.com"
               name="email"
               value={values.email}
               onChange={handleChange}

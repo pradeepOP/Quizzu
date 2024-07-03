@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Changed from 'next/navigation'
 import { useAuth } from "@/context/userContext";
 import { useState } from "react";
 import { useFormik } from "formik";
@@ -10,18 +10,16 @@ import { registerSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 
 const Signup = () => {
-  const { isAuthenticated, user } = useAuth();
-  const router = useRouter();
+  const { isAuthenticated, user, setIsAuthenticated } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
-  if (isAuthenticated && user) {
-    redirect("/");
-  }
   const initialValues = {
     fullname: "",
     email: "",
     password: "",
   };
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -31,14 +29,17 @@ const Signup = () => {
           setErrorMessage("");
           const res = await ApiRequest.post("/user/register", values);
           console.log(res);
-          if (!res.ok) {
-            setErrorMessage(res.data?.error);
-          }
-          if (res.status === 201) {
-            // TODO: redirect to profile page
-            router.push("/");
+          setIsAuthenticated(true);
+          setToken();
+          localStorage.setItem(
+            "token",
+            JSON.stringify(res?.data?.data?.accessToken)
+          );
+          if (res.status === 200) {
+            router.push("/profile");
           }
         } catch (error) {
+          setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
         }
       },
@@ -63,7 +64,7 @@ const Signup = () => {
             <input
               type="text"
               className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
-              placeholder="Pradeep Chhetri"
+              placeholder="Your Name"
               name="fullname"
               value={values.fullname}
               onChange={handleChange}
@@ -74,9 +75,7 @@ const Signup = () => {
             <p className="px-4 mt-2 text-lg italic text-red-500">
               {errors.fullname}
             </p>
-          ) : (
-            <></>
-          )}
+          ) : null}
           <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Email Address
@@ -84,7 +83,7 @@ const Signup = () => {
             <input
               type="email"
               className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
-              placeholder="pradeepkazi38@gmail.com"
+              placeholder="name@company.com"
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -95,9 +94,7 @@ const Signup = () => {
             <p className="px-4 mt-2 text-lg italic text-red-500">
               {errors.email}
             </p>
-          ) : (
-            <></>
-          )}
+          ) : null}
           <div className="flex flex-col h-20 px-5 py-3 bg-white border-l-4 border-transparent mt-9 focus-within:border-primary">
             <label className="italic font-bold md:text-xl text-brown">
               Password
@@ -116,16 +113,12 @@ const Signup = () => {
             <p className="px-4 mt-2 text-lg italic text-red-500">
               {errors.password}
             </p>
-          ) : (
-            <></>
-          )}
+          ) : null}
           {errorMessage ? (
             <p className="px-4 mt-2 text-lg italic text-red-500">
               {errorMessage}
             </p>
-          ) : (
-            <></>
-          )}
+          ) : null}
           <div className="mt-6 space-x-16">
             <button
               type="submit"
@@ -133,7 +126,7 @@ const Signup = () => {
               Signup
             </button>
             <Link href="/login">
-              <button className="px-4 py-3 md:text-xl italic font-bold bg-[#FFFFFF]  text-[#122738] border-2 border-[#122738]">
+              <button className="px-4 py-3 md:text-xl italic font-bold bg-[#FFFFFF] text-[#122738] border-2 border-[#122738]">
                 Login
               </button>
             </Link>
@@ -157,4 +150,5 @@ const Signup = () => {
     </div>
   );
 };
+
 export default Signup;
