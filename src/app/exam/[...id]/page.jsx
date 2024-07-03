@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/userContext";
 import ApiRequest from "@/utils/apiRequest";
 import { toast } from "react-toastify";
+import Timer from "@/components/Timer";
 
 const Exam = () => {
   const { user } = useAuth();
@@ -14,11 +15,14 @@ const Exam = () => {
   const router = useRouter();
   const [quiz, setQuiz] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [initialMinutes, setInitialMinutes] = useState(0);
 
   const fetchQuiz = async () => {
     try {
       const res = await ApiRequest.get(`/quiz/${id}`);
       setQuiz(res?.data?.data?.quiz);
+      setInitialMinutes(res?.data?.data?.quiz?.duration || 0);
     } catch (error) {
       console.log(error);
     }
@@ -74,7 +78,7 @@ const Exam = () => {
     };
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (elapsedTime) => {
     const selectedOptions = quiz.questions.map((question) => ({
       questionId: question._id,
       selectedOption: question.selectedOption || "",
@@ -90,20 +94,16 @@ const Exam = () => {
       correctAnswers: result.correctAnswers,
       wrongAnswers: result.wrongAnswers,
       notAnswered: result.notAnswered,
+      timeTaken: elapsedTime,
     };
 
     try {
       const response = await ApiRequest.post("/score", reqBody);
 
-      console.log("quiz submitted:", reqBody);
-
       const scoreId = response?.data?.data?.score?._id;
-      console.log(scoreId);
-
       router.push(`/exam/result/${scoreId}`);
     } catch (error) {
       toast.error(error.response?.data?.message);
-      console.log("Error submitting quiz", error);
     }
   };
 
@@ -119,12 +119,17 @@ const Exam = () => {
       <div className="bg-[#F7F7F7] md:h-[736px] mt-10 md:mt-20 border-2 border-[#BBD6FF] rounded-xl flex flex-col md:flex-row">
         {/* left div */}
         <div className="w-[265px] h-full md:border-r-2 border-[#BBD6FF] pt-6 mx-auto">
-          <Image
+          {/* <Image
             src="/time.png"
             alt="time"
             width={161}
             height={161}
             className="object-cover mx-auto"
+          /> */}
+          <Timer
+            initialMinutes={initialMinutes}
+            onTimerEnd={handleSubmit}
+            onTimeUpdate={setElapsedTime}
           />
 
           <p className="py-4 px-6 bg-[#E5EFFF] mt-14 text-[#0E0F0F] border-l-8 border-[#C40031]">
@@ -141,8 +146,6 @@ const Exam = () => {
                   ${
                     question.attempted
                       ? "bg-[#C40031] border-2 border-[#C40031] text-white"
-                      : question.markedToReview
-                      ? "bg-[#C6C2C2] border-2 text-[#063173] border-[#063173]"
                       : "border-2 text-[#063173] border-[#063173]"
                   }`}
                   onClick={() => handleQuestionButtonClick(index)}>
@@ -168,14 +171,14 @@ const Exam = () => {
                   Unattempted
                 </span>
               </div>
-              <div className="flex items-center gap-4">
+              {/* <div className="flex items-center gap-4">
                 <span className="px-3 py-1.5 rounded-xl bg-[#C6C2C2] border-2 text-[#063173] border-[#063173]">
                   C
                 </span>
                 <span className="text-[#0E0F0F] text-base font-medium">
                   Marked to review
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -216,7 +219,7 @@ const Exam = () => {
             <button
               type="submit"
               className=" text-white bg-[#063173] py-3 px-6 rounded-xl"
-              onClick={handleSubmit}>
+              onClick={() => handleSubmit(elapsedTime)}>
               submit
             </button>
           </div>

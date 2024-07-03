@@ -11,6 +11,7 @@ const Result = () => {
     correctAnswers: 0,
     wrongAnswers: 0,
     notAnswered: 0,
+    timeTaken: 0,
     quiz: {
       quizId: "",
       title: "",
@@ -32,6 +33,7 @@ const Result = () => {
           correctAnswers: scoreData.correctAnswers,
           wrongAnswers: scoreData.wrongAnswers,
           notAnswered: scoreData.notAnswered,
+          timeTaken: scoreData.timeTaken,
           quiz: {
             quizId: scoreData.quiz._id,
             title: scoreData.quiz.title,
@@ -48,6 +50,17 @@ const Result = () => {
 
     fetchResult();
   }, [id]);
+  const formatTime = (seconds) => {
+    let hours = Math.floor(seconds / 3600);
+    let minutes = Math.floor((seconds % 3600) / 60);
+    let secs = seconds % 60;
+
+    hours = String(hours).padStart(2, "0");
+    minutes = String(minutes).padStart(2, "0");
+    secs = String(secs).padStart(2, "0");
+
+    return `${hours}:${minutes}:${secs}`;
+  };
 
   return (
     <div className="w-full h-full md:h-[736px] max-w-6xl px-5 mx-auto my-10 md:px-0">
@@ -79,7 +92,8 @@ const Result = () => {
               </span>
             </p>
             <p className="text-lg">
-              Time taken: <span className="font-bold">4:16</span>
+              Time taken:{" "}
+              <span className="font-bold">{formatTime(result?.timeTaken)}</span>
             </p>
           </div>
         </div>
@@ -134,7 +148,7 @@ const Result = () => {
                 Check Answer
               </Link>
               <Link
-                href={`/exam/${result?.quiz?._id}`}
+                href={`/exam/${result?.quiz?.quizId}`}
                 className="text-[#063173] bg-[#f7f7f7] border-2 border-[#063173] py-3 px-6 rounded-xl">
                 Try Again
               </Link>
