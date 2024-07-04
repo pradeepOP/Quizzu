@@ -126,7 +126,8 @@ const Signup = () => {
           <div className="mt-6 space-x-16">
             <button
               type="submit"
-              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
+              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
+            >
               Signup
             </button>
             <Link href="/login">
