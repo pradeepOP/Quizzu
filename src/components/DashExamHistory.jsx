@@ -130,7 +130,13 @@ const DashExamHistory = () => {
   return (
     <div className="md:w-[789px] mx-auto h-full pb-10 px-4 pt-2">
       <div className="w-full overflow-x-auto">
-        <canvas ref={chartContainer} className="h-[400px]"></canvas>
+        {scoreData.length === 0 ? (
+          <div className="text-2xl font-semibold text-gray-600">
+            No exam taken yet
+          </div>
+        ) : (
+          <canvas ref={chartContainer} className="h-[400px]"></canvas>
+        )}
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ const Login = () => {
           const res = await ApiRequest.post("/user/login", values);
           const { loggedInUser } = res?.data?.data;
 
+          console.log(res);
           localStorage.setItem(
             "token",
             JSON.stringify(res?.data?.data?.refreshToken)
