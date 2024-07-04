@@ -19,6 +19,7 @@ const HomepageAfterLogin = () => {
   useEffect(() => {
     fetchQuizSets();
   }, []);
+  
   return (
     <div className="w-full px-5 mx-auto max-w-[1140px] md:px-0">
       {/* container */}

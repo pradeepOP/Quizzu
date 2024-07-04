@@ -8,6 +8,7 @@ import { loginSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/userContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { isAuthenticated, setUser, user, setIsAuthenticated } = useAuth();
@@ -26,14 +27,19 @@ const Login = () => {
       validationSchema: loginSchema,
       onSubmit: async (values) => {
         try {
-          setErrorMessage("");
           const res = await ApiRequest.post("/user/login", values);
-
           const { loggedInUser } = res?.data?.data;
-          setUser(loggedInUser);
+
+          localStorage.setItem(
+            "token",
+            JSON.stringify(res?.data?.data?.refreshToken)
+          );
           setIsAuthenticated(true);
+          setUser(loggedInUser);
+          toast.success("Login Successful");
           router.push("/");
         } catch (error) {
+          enqueueSnackbar("Failed to Login!", { variant: "error" });
           setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
         }
@@ -105,7 +111,8 @@ const Login = () => {
               <input type="checkbox" value="" />
               <label
                 htmlFor=""
-                className="pl-1 text-lg italic font-bold md:text-xl text-brown">
+                className="pl-1 text-lg italic font-bold md:text-xl text-brown"
+              >
                 Remember Me
               </label>
             </div>
@@ -126,7 +133,8 @@ const Login = () => {
           <div className="mt-12 space-x-16 md:mt-14">
             <button
               type="submit"
-              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
+              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
+            >
               Login
             </button>
             <Link href="/signup">

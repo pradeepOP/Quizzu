@@ -1,12 +1,6 @@
 "use client";
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  Children,
-} from "react";
 import ApiRequest from "@/utils/apiRequest";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -14,24 +8,59 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
-
-  const fetchUser = async () => {
-    try {
-      setLoading(true);
-      const res = await ApiRequest.get("/user/me");
-      setUser(res?.data?.data?.user);
-      setIsAuthenticated(true);
-    } catch (error) {
-      setUser({});
-      setIsAuthenticated(false);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [token, setToken] = useState("");
 
   useEffect(() => {
-    fetchUser();
-  }, [isAuthenticated]);
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      if (storedToken && storedToken.length > 0) {
+        setToken(JSON.parse(storedToken));
+      } else {
+        setIsAuthenticated(false);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", JSON.stringify(token));
+    } else {
+      localStorage.removeItem("token");
+      setIsAuthenticated(false);
+      setUser({});
+    }
+  }, [token]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setLoading(true);
+        const res = await ApiRequest.get("/user/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res?.data?.data?.user) {
+          setUser(res.data.data.user);
+          setIsAuthenticated(true);
+        } else {
+          throw new Error("User data not found");
+        }
+      } catch (error) {
+        setUser({});
+        setIsAuthenticated(false);
+        // Optionally, handle or notify about the error here
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (token) {
+      fetchUser();
+    }
+
+    return () => {
+      setLoading(false); // Cleanup function to prevent memory leaks
+    };
+  }, [token]);
 
   return (
     <AuthContext.Provider
@@ -42,7 +71,10 @@ export const AuthProvider = ({ children }) => {
         setUser,
         loading,
         setLoading,
-      }}>
+        token,
+        setToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
