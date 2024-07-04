@@ -152,7 +152,8 @@ const Exam = () => {
                         ? "bg-[#C40031] border-2 border-[#C40031] text-white"
                         : "border-2 text-[#063173] border-[#063173]"
                     }`}
-                      onClick={() => handleQuestionButtonClick(index)}>
+                      onClick={() => handleQuestionButtonClick(index)}
+                    >
                       {index + 1}
                     </button>
                   ))}
@@ -206,7 +207,8 @@ const Exam = () => {
                 <button
                   className="flex items-center gap-2"
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}>
+                  disabled={currentQuestionIndex === 0}
+                >
                   <MdSkipPrevious size={20} />
                   <span className="text-[#0E0F0F] text-lg">Previous</span>
                 </button>
@@ -215,7 +217,8 @@ const Exam = () => {
                   onClick={handleNextQuestion}
                   disabled={
                     currentQuestionIndex === quiz?.questions?.length - 1
-                  }>
+                  }
+                >
                   <span className="text-[#0E0F0F] text-lg">Next</span>
                   <MdSkipNext size={20} />
                 </button>
@@ -225,7 +228,8 @@ const Exam = () => {
                 <button
                   type="submit"
                   className=" text-white bg-[#063173] py-3 px-6 rounded-xl"
-                  onClick={() => handleSubmit(elapsedTime)}>
+                  onClick={() => handleSubmit(elapsedTime)}
+                >
                   submit
                 </button>
               </div>

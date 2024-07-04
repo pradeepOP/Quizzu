@@ -10,6 +10,7 @@ const BookCard = () => {
             width={162}
             height={243}
             className="pt-2 mx-auto"
+            alt="book image"
           />
         </div>
 

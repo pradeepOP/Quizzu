@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -46,7 +47,8 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
               />
               <label
                 htmlFor={`option${index}`}
-                className="text-[#0E0F0F] text-lg">
+                className="text-[#0E0F0F] text-lg"
+              >
                 {option}
               </label>
             </div>

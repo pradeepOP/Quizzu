@@ -85,7 +85,8 @@ const DashChangePassword = () => {
         <button
           type="submit"
           className="mt-20 py-3 px-6 rounded-xl bg-[#063173] text-white"
-          disabled={formik.isSubmitting}>
+          disabled={formik.isSubmitting}
+        >
           {formik.isSubmitting ? "Updating..." : "Update Password"}
         </button>
       </form>
