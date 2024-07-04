@@ -31,10 +31,6 @@ const Login = () => {
 
           const { loggedInUser } = res?.data?.data;
           setUser(loggedInUser);
-          localStorage.setItem(
-            "token",
-            JSON.stringify(res?.data?.data?.accessToken)
-          );
           setIsAuthenticated(true);
           router.push("/");
         } catch (error) {

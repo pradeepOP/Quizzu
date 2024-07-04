@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // Changed from 'next/navigation'
 import { useAuth } from "@/context/userContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { registerSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
@@ -13,6 +13,12 @@ const Signup = () => {
   const { isAuthenticated, user, setIsAuthenticated } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      router.push("/profile");
+    }
+  }, []);
 
   const initialValues = {
     fullname: "",
@@ -30,14 +36,12 @@ const Signup = () => {
           const res = await ApiRequest.post("/user/register", values);
           console.log(res);
           setIsAuthenticated(true);
-          setToken();
-          localStorage.setItem(
-            "token",
-            JSON.stringify(res?.data?.data?.accessToken)
-          );
-          if (res.status === 200) {
-            router.push("/profile");
-          }
+          router.push("/profile");
+
+          // if (res.status === "success") {
+          //   console.log("Hi");
+          //   router.push("/profile");
+          // }
         } catch (error) {
           setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);

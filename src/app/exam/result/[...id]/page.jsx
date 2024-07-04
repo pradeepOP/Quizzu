@@ -141,15 +141,15 @@ const Result = () => {
               </span>
             </div>
             {/* buttons */}
-            <div className="mt-12 space-x-6">
+            <div className="flex flex-col gap-3 mt-12 md:space-x-6 md:block">
               <Link
                 href={`/exam/check-answer/${id}`}
-                className="text-white bg-[#063173] border-2 border-[#063173] py-3 px-6 rounded-xl">
+                className="text-white bg-[#063173] border-2 border-[#063173] w-2/3 text-center py-3 px-6 rounded-xl">
                 Check Answer
               </Link>
               <Link
                 href={`/exam/${result?.quiz?.quizId}`}
-                className="text-[#063173] bg-[#f7f7f7] border-2 border-[#063173] py-3 px-6 rounded-xl">
+                className="text-[#063173] bg-[#f7f7f7] border-2 border-[#063173] text-center py-3 w-2/3 px-6 rounded-xl">
                 Try Again
               </Link>
             </div>

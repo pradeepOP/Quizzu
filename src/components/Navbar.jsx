@@ -20,11 +20,10 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const res = await ApiRequest.get("/user/logout");
-      if (res.status === 200) {
-        setIsAuthenticated(false);
-        setUser({});
-        router.push("/");
-      }
+
+      setIsAuthenticated(false);
+      setUser({});
+      router.push("/");
     } catch (error) {
       setUser({});
       setIsAuthenticated(false);
