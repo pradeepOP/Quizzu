@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
+
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        setLoading(true);
         const res = await ApiRequest.get("/user/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -49,17 +48,12 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         // Optionally, handle or notify about the error here
       } finally {
-        setLoading(false);
       }
     };
 
     if (token) {
       fetchUser();
     }
-
-    return () => {
-      setLoading(false); // Cleanup function to prevent memory leaks
-    };
   }, [token]);
 
   return (
@@ -69,12 +63,9 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated,
         user,
         setUser,
-        loading,
-        setLoading,
         token,
         setToken,
-      }}
-    >
+      }}>
       {children}
     </AuthContext.Provider>
   );

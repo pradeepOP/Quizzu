@@ -91,7 +91,7 @@ const Login = () => {
             <input
               type="password"
               className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738] placeholder:text-xl"
-              placeholder="****************"
+              placeholder="**************"
               name="password"
               value={values.password}
               onChange={handleChange}
@@ -111,8 +111,7 @@ const Login = () => {
               <input type="checkbox" value="" />
               <label
                 htmlFor=""
-                className="pl-1 text-lg italic font-bold md:text-xl text-brown"
-              >
+                className="pl-1 text-lg italic font-bold md:text-xl text-brown">
                 Remember Me
               </label>
             </div>
@@ -133,8 +132,7 @@ const Login = () => {
           <div className="mt-12 space-x-16 md:mt-14">
             <button
               type="submit"
-              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
-            >
+              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
               Login
             </button>
             <Link href="/signup">
