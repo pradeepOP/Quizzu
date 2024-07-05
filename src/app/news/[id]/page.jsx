@@ -1,60 +1,72 @@
+"use client";
+import ApiRequest from "@/utils/apiRequest";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import PropagateLoader from "react-spinners/PropagateLoader";
+
 const NewsDetail = () => {
+  const [newsDetail, setNewsDetail] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+  const formattedDate = new Date(newsDetail?.createdAt).toLocaleDateString(
+    "en-US",
+    {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
+
+  const fetchNewsDetails = async () => {
+    try {
+      setLoading(true);
+      const res = await ApiRequest.get(`/news/${id}`);
+      console.log(res);
+      setNewsDetail(res?.data?.data?.singleNews);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error fetching news detail", error);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchNewsDetails();
+  }, [id]);
   return (
     <div className="w-full px-5 mx-auto mb-8 mt-14 max-w-7xl md:px-10">
-      <h2 className="text-[#454D55] md:text-xl">
-        News &gt; Nepal's Engineering Entrance Exam to Feature Practical
-        Assessment
-      </h2>
-      <h1 className=" mt-7 md:mt-14 text-[#000000] text-2xl md:text-6xl font-bold">
-        Nepal's Engineering Entrance Exam to Feature Practical Assessment
-      </h1>
-      <div className="mt-10 md:mt-20">
-        <Image
-          src="/barca.jpg"
-          width={1280}
-          height={300}
-          className="object-top object-cover rounded-t-xl  max-h-[300px]"
-        />
-        <div className="px-4 bg-white rounded-b-xl">
-          <p className="text-[#454D55] md:text-lg pt-1 md:pt-3 ">
-            January 23, 2024 - Thursday
-          </p>
-          <p className="text-[#454D55] md:text-xl mt-4 md:mt-8 pb-6">
-            "Engineering is not just about theoretical knowledge; it’s about
-            applying that knowledge to solve real-world problems," explained
-            Professor Rajan Shrestha from the Institute of Engineering,
-            Tribhuvan University. Kathmandu, Nepal (May 30, 2024) — The
-            Engineering Entrance Exam (EEE) in Nepal will now include a
-            practical skills assessment component, aiming to better evaluate
-            candidates' hands-on abilities and technical knowledge. The
-            introduction of practical assessments marks a significant shift from
-            the traditional theoretical focus of the EEE. "Engineering is not
-            just about theoretical knowledge; it’s about applying that knowledge
-            to solve real-world problems," explained Professor Rajan Shrestha
-            from the Institute of Engineering, Tribhuvan University. "The new
-            practical component will help us identify students who are not only
-            academically proficient but also skilled in practical applications,
-            which is crucial for their future careers." Kathmandu, Nepal (May
-            30, 2024) — The Engineering Entrance Exam (EEE) in Nepal will now
-            include a practical skills assessment component, aiming to better
-            evaluate candidates' hands-on abilities and technical knowledge. The
-            introduction of practical assessments marks a significant shift from
-            the traditional theoretical focus of the EEE. The introduction of
-            practical assessments marks a significant shift from the traditional
-            theoretical focus of the EEE. "Engineering is not just about
-            theoretical knowledge; it’s about applying that knowledge to solve
-            real-world problems," explained Professor Rajan Shrestha from the
-            Institute of Engineering, Tribhuvan University. "The new practical
-            component will help us identify students who are not only
-            academically proficient but also skilled in practical applications,
-            which is crucial for their future careers." The new practical
-            component will help us identify students who are not only
-            academically proficient but also skilled in practical applications,
-            which is crucial for their future careers."
-          </p>
+      {loading ? (
+        <div className="flex items-center justify-center h-[50%]">
+          <PropagateLoader color="#0eb1a6" loading={loading} size={20} />
         </div>
-      </div>
+      ) : (
+        <>
+          <h2 className="text-[#454D55] md:text-xl">
+            News &gt; {newsDetail.title}
+          </h2>
+          <h1 className=" mt-7 md:mt-14 text-[#000000] text-2xl md:text-6xl font-bold">
+            {newsDetail?.title}
+          </h1>
+          <div className="mt-10 md:mt-20">
+            <Image
+              src={newsDetail?.coverImage}
+              width={1280}
+              height={300}
+              className="object-top object-fill rounded-t-xl  max-h-[300px]"
+            />
+            <div className="px-4 bg-white rounded-b-xl">
+              <p className="text-[#454D55] md:text-lg pt-1 md:pt-3 ">
+                {formattedDate}
+              </p>
+              <p className="text-[#454D55] md:text-xl mt-4 md:mt-8 pb-6">
+                {newsDetail?.description}
+                <br />
+              </p>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

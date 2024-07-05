@@ -1,0 +1,4 @@
+limit the news title to 100 or something characters
+
+add the date of news
+image dimension fixing
