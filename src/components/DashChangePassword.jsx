@@ -31,46 +31,46 @@ const DashChangePassword = () => {
 
   return (
     <div className="px-10 py-10">
-      <form onSubmit={formik.handleSubmit} className="space-y-8">
-        <div className="flex items-center justify-between">
-          <span className="text-[#000000] font-bold text-sm md:text-lg">
+      <form onSubmit={formik.handleSubmit} className="space-y-4 md:space-y-8">
+        <div className="flex flex-col md:items-center md:justify-between md:flex-row">
+          <span className="text-[#000000] font-bold text-sm md:text-lg mb-1">
             Old Password
           </span>
           <input
             type="password"
             name="currentPassword"
             placeholder="*********"
-            className="p-3 border-2 text-[#0E0F0F] bg-[#F7F7F7] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-3/4 h-14 placeholder:text-lg placeholder:text-[#0E0F0F]/40"
+            className="p-3 border-2 text-[#0E0F0F] bg-[#F7F7F7] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-3/4 md:h-14 placeholder:text-lg placeholder:text-[#0E0F0F]/40"
             {...formik.getFieldProps("currentPassword")}
           />
         </div>
         {formik.touched.currentPassword && formik.errors.currentPassword ? (
           <div className="text-red-500">{formik.errors.currentPassword}</div>
         ) : null}
-        <div className="flex items-center justify-between">
-          <span className="text-[#000000] font-bold text-sm md:text-lg">
+        <div className="flex flex-col md:items-center md:justify-between md:flex-row">
+          <span className="text-[#000000] font-bold text-sm md:text-lg mb-1">
             New Password
           </span>
           <input
             type="password"
             name="password"
             placeholder="*********"
-            className="p-3 border-2 text-[#0E0F0F] bg-[#F7F7F7] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-3/4 h-14 placeholder:text-lg placeholder:text-[#0E0F0F]/40"
+            className="p-3 border-2 text-[#0E0F0F] bg-[#F7F7F7] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-3/4 md:h-14 placeholder:text-lg placeholder:text-[#0E0F0F]/40"
             {...formik.getFieldProps("password")}
           />
         </div>
         {formik.touched.password && formik.errors.password ? (
           <div className="text-red-500">{formik.errors.password}</div>
         ) : null}
-        <div className="flex items-center justify-between">
-          <span className="text-[#000000] font-bold text-sm md:text-lg">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <span className="text-[#000000] font-bold text-sm md:text-lg mb-1">
             Confirm Password
           </span>
           <input
             type="password"
             name="confirmPassword"
             placeholder="*********"
-            className="p-3 border-2 text-[#0E0F0F] bg-[#F7F7F7] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-3/4 h-14 placeholder:text-lg placeholder:text-[#0E0F0F]/40"
+            className="p-3 border-2 text-[#0E0F0F] bg-[#F7F7F7] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-3/4 md:h-14 placeholder:text-lg placeholder:text-[#0E0F0F]/40"
             {...formik.getFieldProps("confirmPassword")}
           />
         </div>

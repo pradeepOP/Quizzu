@@ -37,7 +37,7 @@ const News = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
-  console.log(currentPage, totalPages);
+  // console.log(currentPage, totalPages);
 
   return (
     <div className="w-full px-5 pb-10 mx-auto mt-14 max-w-7xl md:px-10">
@@ -50,13 +50,14 @@ const News = () => {
           <h1 className="text-[#0E0F0F] font-bold text-3xl md:text-5xl">
             News
           </h1>
-          <div className="mt-8 md:mt-12 space-y-28">
+          <div className="grid grid-cols-1 mt-8 space-y-36 md:mt-12 md:space-y-28">
             {/* News Cards */}
             {news?.map((item) => (
               <NewsCard key={item._id} news={item} />
             ))}
           </div>
-          <div className="flex justify-center gap-4 pt-5 mt-6">
+          {/* pagination */}
+          <div className="flex justify-center gap-4 pt-5 mt-20 md:mt-6">
             {currentPage > 1 && (
               <button
                 onClick={handlePrevPage}
