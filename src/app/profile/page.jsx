@@ -1,13 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useAuth } from "@/context/userContext";
-import DashChangePassword from "@/components/DashChangePassword";
-import DashExamHistory from "@/components/DashExamHistory";
-import DashProfile from "@/components/DashProfile";
 import ApiRequest from "@/utils/apiRequest";
-import PropagateLoader from "react-spinners/PropagateLoader";
+
+// Dynamically import components
+const Image = dynamic(() => import("next/image"), { ssr: false });
+const DashChangePassword = dynamic(
+  () => import("@/components/DashChangePassword"),
+  { ssr: false }
+);
+const DashExamHistory = dynamic(() => import("@/components/DashExamHistory"), {
+  ssr: false,
+});
+const DashProfile = dynamic(() => import("@/components/DashProfile"), {
+  ssr: false,
+});
+const PropagateLoader = dynamic(
+  () => import("react-spinners/PropagateLoader"),
+  { ssr: false }
+);
 
 const Profile = () => {
   const { isAuthenticated, user, setUser } = useAuth();
