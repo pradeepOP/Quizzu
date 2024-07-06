@@ -3,6 +3,28 @@ import Image from "next/image";
 import ExamSetCard from "./ExamSetCard";
 import ApiRequest from "@/utils/apiRequest";
 import { useEffect, useState } from "react";
+import Carousel from "react-multi-carousel";
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const ExamCategoryComoponent = ({ category }) => {
   return (
     <div>
@@ -10,12 +32,16 @@ const ExamCategoryComoponent = ({ category }) => {
         {category.name}
       </h1>
       {/* sets */}
-      <div className="grid grid-cols-1 gap-5 mt-16 md:grid-cols-3">
+      <Carousel
+        responsive={responsive}
+        removeArrowOnDeviceType={["medium", "small"]}
+        className="mt-16 "
+      >
         {/* set card */}
         {category?.quizzes?.map((quiz, index) => {
           return <ExamSetCard key={index} quiz={quiz} />;
         })}
-      </div>
+      </Carousel>
     </div>
   );
 };

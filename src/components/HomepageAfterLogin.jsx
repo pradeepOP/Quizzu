@@ -2,6 +2,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ExamCategoryComoponent from "./ExamCategoryComoponent";
 import ApiRequest from "@/utils/apiRequest";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const HomepageAfterLogin = () => {
   const [quizSets, setQuizSets] = useState([]);

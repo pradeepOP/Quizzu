@@ -11,13 +11,13 @@ const NewsCard = ({ news }) => {
 
   return (
     <div className="max-w-[1140px] max-h-[528px] pb-6">
-      <div className="">
+      <div className=" bg-slate-400 rounded-t-xl">
         <Image
           src={news?.coverImage}
           width={1140}
           height={269}
           alt="News Image"
-          className="object-top object-fill rounded-t-xl max-h-[269px]"
+          className="object-top object-scale-down rounded-t-xl max-h-[269px]"
         />
       </div>
       <div className="px-4 bg-white rounded-b-xl">

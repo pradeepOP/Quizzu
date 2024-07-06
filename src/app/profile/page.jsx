@@ -17,11 +17,12 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-    }
-  }, [isAuthenticated, router]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     router.push("/login");
+  //   }
+  // }, []);
 
   useEffect(() => {
     // Fetch user data when component mounts or when user state changes

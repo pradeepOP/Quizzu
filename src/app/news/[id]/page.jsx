@@ -48,12 +48,13 @@ const NewsDetail = () => {
           <h1 className=" mt-7 md:mt-14 text-[#000000] text-2xl md:text-6xl font-bold">
             {newsDetail?.title}
           </h1>
-          <div className="mt-10 md:mt-20">
+          <div className="mt-10 md:mt-20 bg-slate-400 rounded-xl">
             <Image
               src={newsDetail?.coverImage}
               width={1280}
               height={300}
-              className="object-top object-fill rounded-t-xl  max-h-[300px]"
+              alt="news image"
+              className="object-top object-contain rounded-t-xl  max-h-[300px]"
             />
             <div className="px-4 bg-white rounded-b-xl">
               <p className="text-[#454D55] md:text-lg pt-1 md:pt-3 ">

@@ -11,6 +11,7 @@ import ApiRequest from "@/utils/apiRequest";
 
 const Signup = () => {
   const { isAuthenticated, user, setIsAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
@@ -32,10 +33,12 @@ const Signup = () => {
       validationSchema: registerSchema,
       onSubmit: async (values) => {
         try {
+          setIsLoading(true);
           setErrorMessage("");
           const res = await ApiRequest.post("/user/register", values);
           console.log(res);
           setIsAuthenticated(true);
+          setIsLoading(false);
           router.push("/profile");
 
           // if (res.status === "success") {
@@ -43,6 +46,7 @@ const Signup = () => {
           //   router.push("/profile");
           // }
         } catch (error) {
+          setIsLoading(false);
           setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
         }
@@ -127,8 +131,9 @@ const Signup = () => {
             <button
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
+              disabled={isLoading}
             >
-              Signup
+              {isLoading ? "Loading..." : "Signup"}
             </button>
             <Link href="/login">
               <button className="px-4 py-3 md:text-xl italic font-bold bg-[#FFFFFF] text-[#122738] border-2 border-[#122738]">
