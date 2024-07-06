@@ -103,11 +103,14 @@ const Exam = () => {
     };
 
     try {
+      setLoading(true);
       const response = await ApiRequest.post("/score", reqBody);
 
       const scoreId = response?.data?.data?.score?._id;
       router.push(`/exam/result/${scoreId}`);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       toast.error(error.response?.data?.message);
     }
   };
@@ -227,10 +230,11 @@ const Exam = () => {
               <div className="flex justify-end mt-32 mb-4 mr-12">
                 <button
                   type="submit"
+                  disabled={quiz?.questions?.length === 0 || loading}
                   className=" text-white bg-[#063173] py-3 px-6 rounded-xl"
                   onClick={() => handleSubmit(elapsedTime)}
                 >
-                  submit
+                  {loading ? "Submitting..." : "Submit"}
                 </button>
               </div>
             </div>
