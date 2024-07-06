@@ -16,6 +16,11 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // This code runs only on the client side
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
