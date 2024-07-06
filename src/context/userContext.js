@@ -11,13 +11,9 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token");
-      if (storedToken && storedToken.length > 0) {
-        setToken(JSON.parse(storedToken));
-      } else {
-        setIsAuthenticated(false);
-      }
+    const storedToken = localStorage.getItem("token");
+    if (storedToken && storedToken.length > 0) {
+      setToken(JSON.parse(storedToken));
     }
   }, []);
 
