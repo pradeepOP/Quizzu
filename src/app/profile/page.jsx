@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useAuth } from "@/context/userContext";
 import ApiRequest from "@/utils/apiRequest";
 
-// Dynamically import components
+// server side rendering false or lazy loading to escpe error
 const Image = dynamic(() => import("next/image"), { ssr: false });
 const DashChangePassword = dynamic(
   () => import("@/components/DashChangePassword"),

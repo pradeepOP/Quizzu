@@ -1,8 +1,7 @@
 "use client";
-import Image from "next/image";
+
 import ExamSetCard from "./ExamSetCard";
-import ApiRequest from "@/utils/apiRequest";
-import { useEffect, useState } from "react";
+
 import Carousel from "react-multi-carousel";
 
 const responsive = {
@@ -35,8 +34,7 @@ const ExamCategoryComoponent = ({ category }) => {
       <Carousel
         responsive={responsive}
         removeArrowOnDeviceType={["medium", "small"]}
-        className="mt-16 "
-      >
+        className="mt-16 ">
         {/* set card */}
         {category?.quizzes?.map((quiz, index) => {
           return <ExamSetCard key={index} quiz={quiz} />;

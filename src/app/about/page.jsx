@@ -25,7 +25,7 @@ const About = () => {
               className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738]">
               Start solving
             </Link>
-            <p className="font-bold text-[#2E80FF] md:text-xl">Need help?</p>
+            {/* <p className="font-bold text-[#2E80FF] md:text-xl">Need help?</p> */}
           </div>
         </div>
         {/* right div with image */}

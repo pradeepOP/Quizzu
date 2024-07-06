@@ -40,11 +40,6 @@ const Signup = () => {
           setIsAuthenticated(true);
           setIsLoading(false);
           router.push("/profile");
-
-          // if (res.status === "success") {
-          //   console.log("Hi");
-          //   router.push("/profile");
-          // }
         } catch (error) {
           setIsLoading(false);
           setIsAuthenticated(false);
@@ -71,7 +66,7 @@ const Signup = () => {
             </label>
             <input
               type="text"
-              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
+              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
               placeholder="Your Name"
               name="fullname"
               value={values.fullname}
@@ -90,7 +85,7 @@ const Signup = () => {
             </label>
             <input
               type="email"
-              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
+              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 md:placeholder:text-xl font-bold italic md:text-xl text-[#122738]"
               placeholder="name@company.com"
               name="email"
               value={values.email}
@@ -109,7 +104,7 @@ const Signup = () => {
             </label>
             <input
               type="password"
-              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
+              className="outline-none pt-1 placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 md:placeholder:text-xl"
               placeholder="****************"
               name="password"
               value={values.password}
@@ -131,8 +126,7 @@ const Signup = () => {
             <button
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
-              disabled={isLoading}
-            >
+              disabled={isLoading}>
               {isLoading ? "Loading..." : "Signup"}
             </button>
             <Link href="/login">
@@ -144,7 +138,7 @@ const Signup = () => {
         </form>
 
         {/* login with google and facebook */}
-        <div className="flex items-center justify-between mt-6 md:mt-20">
+        {/* <div className="flex items-center justify-between mt-6 md:mt-20">
           <p className="italic font-bold md:text-xl text-brown">
             or login with
           </p>
@@ -155,7 +149,7 @@ const Signup = () => {
             </p>
             <p className="text-[#122738] font-bold md:text-xl italic">Google</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

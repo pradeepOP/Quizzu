@@ -8,7 +8,6 @@ import { loginSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/userContext";
-import { toast } from "react-toastify";
 
 const Login = () => {
   const { isAuthenticated, setUser, user, setIsAuthenticated } = useAuth();
@@ -40,11 +39,9 @@ const Login = () => {
           setIsAuthenticated(true);
           setUser(loggedInUser);
           setIsLoading(false);
-          toast.success("Login Successful");
           router.push("/");
         } catch (error) {
           setIsLoading(false);
-          enqueueSnackbar("Failed to Login!", { variant: "error" });
           setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
         }
@@ -74,7 +71,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738] md:placeholder:text-xl"
+              className="outline-none pt-1 font-bold italic md:text-xl text-[#122738] placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 md:placeholder:text-xl"
               placeholder="name@company.com"
               name="email"
               value={values.email}
@@ -95,7 +92,7 @@ const Login = () => {
             </label>
             <input
               type="password"
-              className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738] placeholder:text-xl"
+              className="outline-none pt-2 placeholder:font-bold placeholder:italic placeholder:text-[#122738]/40 placeholder:text-xl"
               placeholder="**************"
               name="password"
               value={values.password}
@@ -116,8 +113,7 @@ const Login = () => {
               <input type="checkbox" value="" />
               <label
                 htmlFor=""
-                className="pl-1 text-lg italic font-bold md:text-xl text-brown"
-              >
+                className="pl-1 text-lg italic font-bold md:text-xl text-brown">
                 Remember Me
               </label>
             </div>
@@ -139,8 +135,7 @@ const Login = () => {
             <button
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
-              disabled={isLoading}
-            >
+              disabled={isLoading}>
               {isLoading ? "Loading..." : "Login"}
             </button>
             <Link href="/signup">
@@ -152,7 +147,7 @@ const Login = () => {
         </form>
 
         {/* login with google and facebook */}
-        <div className="flex items-center justify-between mt-10 md:mt-20">
+        {/* <div className="flex items-center justify-between mt-10 md:mt-20">
           <p className="italic font-bold md:text-xl text-brown">
             or login with
           </p>
@@ -163,7 +158,7 @@ const Login = () => {
             </p>
             <p className="text-[#122738] font-bold md:text-xl italic">Google</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
