@@ -1,16 +1,11 @@
 import React from "react";
 import { useFormik } from "formik";
-import * as yup from "yup";
-import axios from "axios";
 import { useAuth } from "@/context/userContext";
 import { changePasswordSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 import { toast } from "react-toastify";
-import { redirect } from "next/dist/server/api-utils";
 
 const DashChangePassword = () => {
-  const { user, setUser } = useAuth();
-
   const formik = useFormik({
     initialValues: {
       currentPassword: "",
@@ -85,8 +80,7 @@ const DashChangePassword = () => {
         <button
           type="submit"
           className="mt-20 py-3 px-6 rounded-xl bg-[#063173] text-white"
-          disabled={formik.isSubmitting}
-        >
+          disabled={formik.isSubmitting}>
           {formik.isSubmitting ? "Updating..." : "Update Password"}
         </button>
       </form>
