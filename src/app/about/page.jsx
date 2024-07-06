@@ -32,7 +32,11 @@ const About = () => {
         <div className="flex-1">
           <Image
             src="/about/hero-img.png"
+<<<<<<< HEAD
             alt="hero"
+=======
+            alt="hero-image"
+>>>>>>> e0ed376f5b69af53566d302da97c40224b1c09e1
             width={694}
             height={702}
           />
@@ -64,7 +68,11 @@ const About = () => {
               src="/about/icon2.svg"
               width={100}
               height={100}
+<<<<<<< HEAD
               alt="about icon"
+=======
+              alt="icon"
+>>>>>>> e0ed376f5b69af53566d302da97c40224b1c09e1
               className="mx-auto md:w-[140px]"
             />
             <h1 className="text-[#333333] text-2xl md:text-4xl ">VISION</h1>
@@ -78,7 +86,11 @@ const About = () => {
               src="/about/icon3.svg"
               width={100}
               height={100}
+<<<<<<< HEAD
               alt="about icon"
+=======
+              alt="icon"
+>>>>>>> e0ed376f5b69af53566d302da97c40224b1c09e1
               className="mx-auto md:w-[140px]"
             />
             <h1 className="text-[#333333] text-2xl md:text-4xl ">GOAL</h1>

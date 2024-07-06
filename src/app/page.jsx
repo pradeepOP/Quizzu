@@ -6,6 +6,7 @@ import { useAuth } from "@/context/userContext";
 
 const Page = () => {
   const { isAuthenticated, user } = useAuth();
+  // console.log(isAuthenticated, user);
 
   return (
     <div>

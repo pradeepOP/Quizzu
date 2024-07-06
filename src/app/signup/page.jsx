@@ -4,15 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // Changed from 'next/navigation'
 import { useAuth } from "@/context/userContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { registerSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 
 const Signup = () => {
   const { isAuthenticated, user, setIsAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      router.push("/profile");
+    }
+  }, []);
 
   const initialValues = {
     fullname: "",
@@ -26,19 +33,20 @@ const Signup = () => {
       validationSchema: registerSchema,
       onSubmit: async (values) => {
         try {
+          setIsLoading(true);
           setErrorMessage("");
           const res = await ApiRequest.post("/user/register", values);
           console.log(res);
           setIsAuthenticated(true);
-          setToken();
-          localStorage.setItem(
-            "token",
-            JSON.stringify(res?.data?.data?.accessToken)
-          );
-          if (res.status === 200) {
-            router.push("/profile");
-          }
+          setIsLoading(false);
+          router.push("/profile");
+
+          // if (res.status === "success") {
+          //   console.log("Hi");
+          //   router.push("/profile");
+          // }
         } catch (error) {
+          setIsLoading(false);
           setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
         }
@@ -122,8 +130,10 @@ const Signup = () => {
           <div className="mt-6 space-x-16">
             <button
               type="submit"
-              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80">
-              Signup
+              className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : "Signup"}
             </button>
             <Link href="/login">
               <button className="px-4 py-3 md:text-xl italic font-bold bg-[#FFFFFF] text-[#122738] border-2 border-[#122738]">

@@ -15,7 +15,7 @@ const Timer = ({ initialMinutes, onTimerEnd, onTimeUpdate }) => {
 
       if (remainingTime <= 0) {
         clearInterval(timerRef.current);
-        onTimerEnd(elapsed);
+        onTimerEnd(initialMinutes * 60);
       }
     }, 1000);
 

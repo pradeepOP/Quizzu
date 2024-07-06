@@ -17,11 +17,12 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-    }
-  }, [isAuthenticated, router]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     router.push("/login");
+  //   }
+  // }, []);
 
   useEffect(() => {
     // Fetch user data when component mounts or when user state changes
@@ -86,7 +87,8 @@ const Profile = () => {
 
                 <label
                   htmlFor="profileImageInput"
-                  className="absolute transform translate-x-1/2 cursor-pointer bottom-6 right-1/2">
+                  className="absolute transform translate-x-1/2 cursor-pointer bottom-6 right-1/2"
+                >
                   <Image
                     src="/profileIcon.png"
                     alt="profile"
@@ -113,7 +115,8 @@ const Profile = () => {
                     ? "bg-[#E5EFFF] border-[#C40031]"
                     : "border-transparent "
                 } `}
-                onClick={() => setActiveTab("profile")}>
+                onClick={() => setActiveTab("profile")}
+              >
                 Profile
               </p>
 
@@ -123,7 +126,8 @@ const Profile = () => {
                     ? "bg-[#E5EFFF] border-[#C40031]"
                     : "border-transparent"
                 }`}
-                onClick={() => setActiveTab("changePassword")}>
+                onClick={() => setActiveTab("changePassword")}
+              >
                 Change Password
               </p>
 
@@ -133,7 +137,8 @@ const Profile = () => {
                     ? "bg-[#E5EFFF] border-[#C40031]"
                     : "border-transparent"
                 }`}
-                onClick={() => setActiveTab("exam-detail")}>
+                onClick={() => setActiveTab("exam-detail")}
+              >
                 Exam Details
               </p>
             </div>

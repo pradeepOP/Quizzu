@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
+
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -15,35 +15,46 @@ export const AuthProvider = ({ children }) => {
       const storedToken = localStorage.getItem("token");
       if (storedToken && storedToken.length > 0) {
         setToken(JSON.parse(storedToken));
-        setIsAuthenticated(true);
-      }
-      if (!storedToken) {
+      } else {
         setIsAuthenticated(false);
       }
     }
   }, []);
 
   useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", JSON.stringify(token));
+    } else {
+      localStorage.removeItem("token");
+      setIsAuthenticated(false);
+      setUser({});
+    }
+  }, [token]);
+
+  useEffect(() => {
     const fetchUser = async () => {
       try {
-        setLoading(true);
         const res = await ApiRequest.get("/user/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUser(res?.data?.data?.user);
-        setIsAuthenticated(true);
+        if (res?.data?.data?.user) {
+          setUser(res.data.data.user);
+          setIsAuthenticated(true);
+        } else {
+          throw new Error("User data not found");
+        }
       } catch (error) {
         setUser({});
         setIsAuthenticated(false);
+        // Optionally, handle or notify about the error here
       } finally {
-        setLoading(false);
       }
     };
 
-    if (token && isAuthenticated) {
+    if (token) {
       fetchUser();
     }
-  }, [token, isAuthenticated]);
+  }, [token]);
 
   return (
     <AuthContext.Provider
@@ -52,8 +63,6 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated,
         user,
         setUser,
-        loading,
-        setLoading,
         token,
         setToken,
       }}>

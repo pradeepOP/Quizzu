@@ -9,22 +9,21 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
-
   const router = useRouter();
 
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [activeLink, setActiveLink] = useState("/");
 
   const toggleHamburger = () => setShow(!show);
 
   const handleLogout = async () => {
     try {
       const res = await ApiRequest.get("/user/logout");
-      if (res.status === 200) {
-        setIsAuthenticated(false);
-        setUser({});
-        router.push("/");
-      }
+      localStorage.removeItem("token");
+      setIsAuthenticated(false);
+      setUser({});
+      router.push("/");
     } catch (error) {
       setUser({});
       setIsAuthenticated(false);
@@ -53,8 +52,12 @@ const Navbar = () => {
     };
   }, [dropdown]);
 
+  const handleLinkClick = (path) => {
+    setActiveLink(path);
+  };
+
   return (
-    <div className="flex items-center justify-between w-full px-4 pt-10 mx-auto text-black md:px-0 max-w-7xl ">
+    <div className="flex items-center justify-between w-full px-4 pt-10 mx-auto text-black md:px-0 max-w-7xl">
       {/* logo */}
       <Link href="/">
         <Image
@@ -113,7 +116,13 @@ const Navbar = () => {
                 onClick={() => {
                   handleLogout();
                   toggleHamburger();
+<<<<<<< HEAD
                 }}>
+=======
+                }}
+                className="text-primary"
+              >
+>>>>>>> e0ed376f5b69af53566d302da97c40224b1c09e1
                 Logout
               </button>
             ) : (
@@ -131,30 +140,51 @@ const Navbar = () => {
 
       {/* navigation */}
       <ul className="items-center hidden gap-24 text-xl md:flex">
-        <li className="">
-          <Link href="/">Home</Link>
+        <li className={`relative ${activeLink === "/" ? "active-link" : ""}`}>
+          <Link href="/" onClick={() => handleLinkClick("/")}>
+            Home
+          </Link>
         </li>
-        <li>
-          <Link href="/about">About us</Link>
+        <li
+          className={`relative ${activeLink === "/about" ? "active-link" : ""}`}
+        >
+          <Link href="/about" onClick={() => handleLinkClick("/about")}>
+            About us
+          </Link>
         </li>
-        <li>
-          <Link href="/books">Books</Link>
+        <li
+          className={`relative ${activeLink === "/books" ? "active-link" : ""}`}
+        >
+          <Link href="/books" onClick={() => handleLinkClick("/books")}>
+            Books
+          </Link>
         </li>
-        <li>
-          <Link href="/news">News</Link>
+        <li
+          className={`relative ${activeLink === "/news" ? "active-link" : ""}`}
+        >
+          <Link href="/news" onClick={() => handleLinkClick("/news")}>
+            News
+          </Link>
         </li>
         {isAuthenticated ? (
           <></>
         ) : (
-          <li className="">
-            <Link href="/signup">Register</Link>
+          <li
+            className={`relative ${
+              activeLink === "/signup" ? "active-link" : ""
+            }`}
+          >
+            <Link href="/signup" onClick={() => handleLinkClick("/signup")}>
+              Register
+            </Link>
           </li>
         )}
 
         {isAuthenticated && user ? (
           <div
             className="relative flex items-center gap-4 cursor-pointer"
-            onClick={toggleDropdown}>
+            onClick={toggleDropdown}
+          >
             <Image
               src={user.avatar}
               width={48}
@@ -174,16 +204,21 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200">
+                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200"
+                >
                   Logout
                 </button>
               </div>
             )}
           </div>
         ) : (
-          <li>
+          <li
+            className={`relative ${
+              activeLink === "/login" ? "active-link" : ""
+            }`}
+          >
             <Link href="/login">
-              <button className="px-8 py-3 text-2xl font-bold text-primary border-[2px] border-primary hover:bg-primary hover:text-white duration-300 ">
+              <button className="px-8 py-3 text-2xl font-bold text-primary border-[2px] border-primary hover:bg-primary hover:text-white duration-300">
                 Login
               </button>
             </Link>

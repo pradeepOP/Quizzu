@@ -168,15 +168,15 @@ const CheckAnswer = () => {
             </button>
           </div>
           {/* buttons */}
-          <div className="pb-8 pl-6 mt-12 space-x-6">
+          <div className="flex flex-col gap-3 pb-8 pl-6 mt-12 md:block md:space-x-6">
             <Link
               href="/"
-              className="text-white bg-[#063173] border-2 border-[#063173] py-3 px-6 rounded-xl">
+              className="text-white bg-[#063173] w-2/3 text-center border-2 border-[#063173] py-3 px-6 rounded-xl">
               Return Home
             </Link>
             <Link
               href={`/exam/${result?.quiz?.quizId}`}
-              className="text-[#063173] bg-[#f7f7f7] border-2 border-[#063173] py-3 px-6 rounded-xl">
+              className="text-[#063173] bg-[#f7f7f7] w-2/3 text-center border-2 border-[#063173] py-3 px-6 rounded-xl">
               Try Again
             </Link>
           </div>

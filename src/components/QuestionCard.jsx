@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -21,9 +22,9 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
       <h1 className="text-[#0E0F0F] text-xl md:text-2xl font-bold">
         {questionIndex + 1}. {question?.questionTitle}
       </h1>
-      {question?.image && (
+      {question?.coverImage && (
         <Image
-          src={question.image}
+          src={question.coverImage}
           width={224}
           height={129}
           alt="question image"
@@ -46,7 +47,8 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
               />
               <label
                 htmlFor={`option${index}`}
-                className="text-[#0E0F0F] text-lg">
+                className="text-[#0E0F0F] text-lg"
+              >
                 {option}
               </label>
             </div>
