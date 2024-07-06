@@ -35,8 +35,8 @@ const BookDetail = () => {
       ) : (
         <div className="flex flex-col h-full md:flex-row">
           {/* left div */}
-          <div className=" flex w-60 md:flex-col gap-12 mt-4 md:mt-0 items-center md:border-r-2  border-[#BBD6FF]">
-            <div className="w-4/5 mx-auto md:mt-10">
+          <div className=" flex w-60  flex-col gap-12 mt-4 md:mt-0 items-center md:border-r-2  border-[#BBD6FF]">
+            <div className="w-4/5 mx-auto mt-6 md:mt-10">
               <Image
                 src={book.coverImage}
                 width={162}
@@ -67,16 +67,16 @@ const BookDetail = () => {
             </div>
           </div>
           {/* right div */}
-          <div className=" md:flex-1">
+          <div className="pb-10 md:pb-2 md:flex-1">
             <h1 className="text-[#0E0F0F] font-bold italic text-3xl md:text-5xl  mt-6 md:mt-0 py-7 pl-10  border-b-2 border-[#BBD6FF]">
               {book.title}
             </h1>
             <p className="md:w-[752px] md:h-[408px] pt-9 text-sm md:pl-10 overflow-y-auto">
               {book.description}
             </p>
-            <button className="md:mt-36 mt-8 md:ml-10 mb-4 bg-[#063173] py-2 px-4 rounded-xl text-white">
+            {/* <button className="md:mt-36 mt-8 md:ml-10 mb-4 bg-[#063173] py-2 px-4 rounded-xl text-white">
               Mark as favourite
-            </button>
+            </button> */}
           </div>
         </div>
       )}

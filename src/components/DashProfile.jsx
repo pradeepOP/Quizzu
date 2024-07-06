@@ -29,13 +29,13 @@ const DashProfile = () => {
   };
 
   return (
-    <div className="px-10 py-10 space-y-8">
+    <div className="px-10 py-10 space-y-4 md:space-y-8">
       {/* username */}
       <div className="flex flex-col items-start justify-between gap-1 md:flex-row md:items-center">
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Username
         </span>
-        <span className="p-3 border-2 text-[#0E0F0F] md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14 md:h-auto md:min-w-[200px]">
+        <span className="p-3 border-2 text-[#0E0F0F] md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5  md:min-w-[200px]">
           {user?.fullname}
         </span>
       </div>
@@ -44,7 +44,7 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Email
         </span>
-        <span className="p-3 border-2 text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14 md:h-auto md:min-w-[200px]">
+        <span className="p-3 border-2 text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14  md:min-w-[200px]">
           {user?.email}
         </span>
       </div>
@@ -53,8 +53,8 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Mobile No.
         </span>
-        <span className="p-3 border-2 tracking-wider text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14 md:h-auto md:min-w-[200px]">
-          {user?.phNumber ? user.phNumber : "No phone number yet"}
+        <span className="p-3 border-2 tracking-wider text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14  md:min-w-[200px]">
+          {user?.phNumber ? user.phNumber : ""}
         </span>
       </div>
       <button

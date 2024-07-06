@@ -19,9 +19,8 @@ const Footer = () => {
               />
             </div>
             <p className="text-[#0E0F0F] text-sm md:text-base">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry standard dummy text
-              ever.
+              Explore, learn, and challenge yourself with our interactive exams.
+              Expand your knowledge and track your progress effortlessly.
             </p>
             <div className="flex mt-6 gap-14 md:gap-6">
               <Link href="https://www.facebook.com" aria-label="Facebook">
