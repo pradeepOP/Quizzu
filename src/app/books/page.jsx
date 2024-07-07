@@ -14,7 +14,7 @@ const Books = () => {
   const fetchBooks = async (page) => {
     try {
       setLoading(true);
-      const res = await ApiRequest.get(`/book?page=${page}&limit=9`);
+      const res = await ApiRequest.get(`/book?page=${page}&limit=6`);
       setBooks(res?.data?.data?.books);
       setTotalPages(res?.data?.data?.totalPages);
       setLoading(false);
@@ -52,23 +52,21 @@ const Books = () => {
               <BookCard key={book._id} book={book} />
             ))}
           </div>
-          <div className="flex justify-center mt-6 items-center gap-4">
+          <div className="flex items-center justify-center gap-4 mt-6">
             {currentPage > 1 && (
               <button
                 onClick={handlePrevPage}
-                className="px-4 py-2 mr-2 flex items-center text-white bg-gray-600 rounded-md"
-              >
+                className="flex items-center px-4 py-2 mr-2 text-white bg-gray-600 rounded-md">
                 <IoIosArrowBack className="mr-1" /> Previous
               </button>
             )}
-            <span className="text-brown mx-2 text-xl">
+            <span className="mx-2 text-xl text-brown">
               Page {currentPage} of {totalPages}
             </span>
             {currentPage < totalPages && (
               <button
                 onClick={handleNextPage}
-                className="px-4 py-2 flex items-center text-white bg-gray-600 rounded-md"
-              >
+                className="flex items-center px-4 py-2 text-white bg-gray-600 rounded-md">
                 Next <IoIosArrowForward className="ml-1" />
               </button>
             )}
