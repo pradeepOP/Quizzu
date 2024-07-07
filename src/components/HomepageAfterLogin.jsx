@@ -84,17 +84,10 @@ const HomepageAfterLogin = () => {
                           }}
                         />
                       </div>
-                      <div className="flex flex-col justify-between gap-1 mt-1 text-xs md:gap-4 md:flex-row md:text-base md:justify-end">
-                        <p className="text-end text-[#000000] font-bold  hidden md:block">
-                          Full Marks: {score.totalQuestions}
-                        </p>
-                        <p className="text-end text-[#000000] font-bold">
-                          Score: {score.totalScore}
-                        </p>
-                        <p className="text-end text-[#000000] font-bold hidden md:block">
-                          Accuracy: {score.accuracy.toFixed(2)}%
-                        </p>
-                      </div>
+
+                      <p className="text-end text-[#000000] font-bold">
+                        Score: {score.totalScore}
+                      </p>
                     </div>
 
                     {index === 0 && (
