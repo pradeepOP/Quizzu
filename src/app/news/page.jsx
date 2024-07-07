@@ -15,13 +15,13 @@ const News = () => {
     try {
       setIsLoading(true);
       const res = await ApiRequest.get(`/news?page=${page}&limit=3`);
-      console.log(res);
-      setNews(res?.data?.data?.news);
-      setTotalPages(res?.data?.data?.totalPages);
-      setIsLoading(false);
+      console.log("API Response:", res);
+      setNews(res?.data?.data?.news || []);
+      setTotalPages(res?.data?.data?.totalPages || 1);
     } catch (error) {
-      setIsLoading(false);
       console.log("Error fetching news:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -30,14 +30,18 @@ const News = () => {
   }, [currentPage]);
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
   };
 
   const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
 
-  // console.log(currentPage, totalPages);
+  console.log("Current Page:", currentPage, "Total Pages:", totalPages);
 
   return (
     <div className="w-full px-5 pb-10 mx-auto mt-14 max-w-7xl md:px-10">
@@ -66,8 +70,7 @@ const News = () => {
               </button>
             )}
             <span className="mx-2 text-xl text-brown">
-              Page {currentPage}
-              {totalPages > 1 && ` of ${totalPages}`}
+              Page {currentPage} of {totalPages}
             </span>
             {currentPage < totalPages && (
               <button

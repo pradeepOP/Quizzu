@@ -53,9 +53,9 @@ const NewsDetail = () => {
             <Image
               src={newsDetail?.coverImage}
               width={1280}
-              height={300}
+              height={400}
               alt="news image"
-              className="object-top object-fill rounded-t-xl max-h-[300px]"
+              className="object-top object-fill rounded-t-xl max-h-[400px]"
             />
             <div className="px-4 bg-white rounded-b-xl">
               <p className="text-[#454D55] md:text-lg pt-1 md:pt-3">
