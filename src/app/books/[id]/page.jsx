@@ -71,7 +71,9 @@ const BookDetail = () => {
             <h1 className="text-[#0E0F0F] font-bold italic text-3xl md:text-5xl  mt-6 md:mt-0 py-7 pl-10  border-b-2 border-[#BBD6FF]">
               {book.title}
             </h1>
-            <p className="md:w-[752px] md:h-[408px] pt-9 text-sm md:pl-10 overflow-y-auto">
+            <p
+              className="md:w-[752px] md:h-[408px] pt-9 text-sm md:pl-10 overflow-y-auto"
+              style={{ whiteSpace: "pre-line" }}>
               {book.description}
             </p>
             {/* <button className="md:mt-36 mt-8 md:ml-10 mb-4 bg-[#063173] py-2 px-4 rounded-xl text-white">
