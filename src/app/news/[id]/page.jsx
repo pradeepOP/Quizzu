@@ -1,9 +1,9 @@
 "use client";
-import ApiRequest from "@/utils/apiRequest";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import PropagateLoader from "react-spinners/PropagateLoader";
+import ApiRequest from "@/utils/apiRequest";
 
 const NewsDetail = () => {
   const [newsDetail, setNewsDetail] = useState({});
@@ -23,7 +23,6 @@ const NewsDetail = () => {
     try {
       setLoading(true);
       const res = await ApiRequest.get(`/news/${id}`);
-      console.log(res);
       setNewsDetail(res?.data?.data?.singleNews);
       setLoading(false);
     } catch (error) {
@@ -31,9 +30,11 @@ const NewsDetail = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchNewsDetails();
   }, [id]);
+
   return (
     <div className="w-full px-5 mx-auto mb-8 mt-14 max-w-7xl md:px-10">
       {loading ? (
@@ -45,7 +46,7 @@ const NewsDetail = () => {
           <h2 className="text-[#454D55] md:text-xl">
             News &gt; {newsDetail.title}
           </h2>
-          <h1 className=" mt-7 md:mt-14 text-[#000000] text-2xl md:text-6xl font-bold">
+          <h1 className="mt-7 md:mt-14 text-[#000000] text-2xl md:text-6xl font-bold">
             {newsDetail?.title}
           </h1>
           <div className="mt-10 md:mt-20 bg-slate-400 rounded-xl">
@@ -54,15 +55,16 @@ const NewsDetail = () => {
               width={1280}
               height={300}
               alt="news image"
-              className="object-top object-contain rounded-t-xl  max-h-[300px]"
+              className="object-top object-fill rounded-t-xl max-h-[300px]"
             />
             <div className="px-4 bg-white rounded-b-xl">
-              <p className="text-[#454D55] md:text-lg pt-1 md:pt-3 ">
+              <p className="text-[#454D55] md:text-lg pt-1 md:pt-3">
                 {formattedDate}
               </p>
-              <p className="text-[#454D55] md:text-xl mt-4 md:mt-8 pb-6">
+              <p
+                className="text-[#454D55] md:text-xl mt-4 md:mt-8 pb-6"
+                style={{ whiteSpace: "pre-line" }}>
                 {newsDetail?.description}
-                <br />
               </p>
             </div>
           </div>
@@ -71,4 +73,5 @@ const NewsDetail = () => {
     </div>
   );
 };
+
 export default NewsDetail;
