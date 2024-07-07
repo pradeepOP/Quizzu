@@ -14,7 +14,7 @@ const News = () => {
   const fetchNews = async (page) => {
     try {
       setIsLoading(true);
-      const res = await ApiRequest.get(`/news?page=${page}&limit=6`);
+      const res = await ApiRequest.get(`/news?page=${page}&limit=3`);
       console.log(res);
       setNews(res?.data?.data?.news);
       setTotalPages(res?.data?.data?.totalPages);
