@@ -16,7 +16,9 @@ const BookCard = ({ book }) => {
         </div>
 
         <p className="py-4 text-center text-[#000000] font-bold text-xl bg-white rounded-b-xl">
-          {book?.title}
+          {book?.title.length > 30
+            ? `${book.title.substring(0, 30)}...`
+            : book.title}
         </p>
       </div>
     </Link>
