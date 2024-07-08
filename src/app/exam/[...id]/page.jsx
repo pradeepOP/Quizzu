@@ -15,6 +15,7 @@ const Exam = () => {
   const { id } = useParams();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [quiz, setQuiz] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -103,14 +104,13 @@ const Exam = () => {
     };
 
     try {
-      setLoading(true);
+      setSubmitLoading(true);
       const response = await ApiRequest.post("/score", reqBody);
-
       const scoreId = response?.data?.data?.score?._id;
       router.push(`/exam/result/${scoreId}`);
-      setLoading(false);
+      setSubmitLoading(false);
     } catch (error) {
-      setLoading(false);
+      setSubmitLoading(false);
       toast.error(error.response?.data?.message);
     }
   };
@@ -155,8 +155,7 @@ const Exam = () => {
                         ? "bg-[#C40031] border-2 border-[#C40031] text-white"
                         : "border-2 text-[#063173] border-[#063173]"
                     }`}
-                      onClick={() => handleQuestionButtonClick(index)}
-                    >
+                      onClick={() => handleQuestionButtonClick(index)}>
                       {index + 1}
                     </button>
                   ))}
@@ -210,8 +209,7 @@ const Exam = () => {
                 <button
                   className="flex items-center gap-2"
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}
-                >
+                  disabled={currentQuestionIndex === 0}>
                   <MdSkipPrevious size={20} />
                   <span className="text-[#0E0F0F] text-lg">Previous</span>
                 </button>
@@ -220,8 +218,7 @@ const Exam = () => {
                   onClick={handleNextQuestion}
                   disabled={
                     currentQuestionIndex === quiz?.questions?.length - 1
-                  }
-                >
+                  }>
                   <span className="text-[#0E0F0F] text-lg">Next</span>
                   <MdSkipNext size={20} />
                 </button>
@@ -232,9 +229,8 @@ const Exam = () => {
                   type="submit"
                   disabled={quiz?.questions?.length === 0 || loading}
                   className=" text-white bg-[#063173] py-3 px-6 rounded-xl"
-                  onClick={() => handleSubmit(elapsedTime)}
-                >
-                  {loading ? "Submitting..." : "Submit"}
+                  onClick={() => handleSubmit(elapsedTime)}>
+                  {submitLoading ? "Submitting..." : "Submit"}
                 </button>
               </div>
             </div>
