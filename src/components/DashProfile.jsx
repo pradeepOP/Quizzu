@@ -35,7 +35,7 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Username
         </span>
-        <span className="p-3 border-2 text-[#0E0F0F] md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5  md:min-w-[200px]">
+        <span className="p-3 border-2 text-[#0E0F0F] md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14 md:min-w-[200px]">
           {user?.fullname}
         </span>
       </div>

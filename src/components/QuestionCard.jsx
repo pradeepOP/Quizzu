@@ -19,7 +19,7 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
 
   return (
     <div className="pl-6 pt-7">
-      <h1 className="text-[#0E0F0F] text-xl md:text-2xl font-bold">
+      <h1 className="text-[#0E0F0F] text-xl md:text-2xl pr-2 font-bold">
         {questionIndex + 1}. {question?.questionTitle}
       </h1>
       {question?.coverImage && (
@@ -47,8 +47,7 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
               />
               <label
                 htmlFor={`option${index}`}
-                className="text-[#0E0F0F] text-lg"
-              >
+                className="text-[#0E0F0F] text-lg">
                 {option}
               </label>
             </div>
