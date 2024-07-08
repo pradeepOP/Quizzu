@@ -44,7 +44,7 @@ const News = () => {
   console.log("Current Page:", currentPage, "Total Pages:", totalPages);
 
   return (
-    <div className="w-full px-5 pb-10 mx-auto mt-14 max-w-7xl md:px-10">
+    <div className="w-full px-5 pb-10 mx-auto md:w-4/5 mt-14 max-w-7xl md:px-10">
       {isLoading ? (
         <div className="flex items-center justify-center h-[50%]">
           <PropagateLoader color="#0eb1a6" loading={isLoading} size={20} />

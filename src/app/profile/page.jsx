@@ -75,7 +75,7 @@ const Profile = () => {
           <PropagateLoader color="#0eb1a6" loading={loading} size={20} />
         </div>
       ) : (
-        <div className="bg-[#F7F7F7] h-full md:h-[90vh] border-2 border-[#BBD6FF] rounded-xl flex flex-col md:flex-row">
+        <div className="bg-[#F7F7F7] h-full  border-2 border-[#BBD6FF] rounded-xl flex flex-col md:flex-row">
           {/* left div */}
           <div className="w-[265px] h-full md:border-r-2 border-[#BBD6FF] pt-10 mx-auto">
             {user && (

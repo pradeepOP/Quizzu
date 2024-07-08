@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import ApiRequest from "@/utils/apiRequest";
+import Link from "next/link";
 
 const NewsDetail = () => {
   const [newsDetail, setNewsDetail] = useState({});
@@ -43,9 +44,9 @@ const NewsDetail = () => {
         </div>
       ) : (
         <>
-          <h2 className="text-[#454D55] md:text-xl">
+          <Link href="/news" className="text-[#454D55] md:text-xl">
             News &gt; {newsDetail.title}
-          </h2>
+          </Link>
           <h1 className="mt-7 md:mt-14 text-[#000000] text-2xl md:text-6xl font-bold">
             {newsDetail?.title}
           </h1>
