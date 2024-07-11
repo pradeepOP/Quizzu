@@ -7,6 +7,7 @@ import { forgetPasswordSchema } from "@/schemas";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ApiRequest from "@/utils/apiRequest";
+import { toast } from "react-toastify";
 
 const ForgetPassword = () => {
   const router = useRouter();
@@ -26,9 +27,10 @@ const ForgetPassword = () => {
         try {
           setErrorMessage("");
           const res = await ApiRequest.post("/user/forget-password", values);
-          alert(res.data.message);
+          // console.log(res);
+          toast.success(res?.data?.message);
         } catch (error) {
-          console.log(error);
+          toast.error(error.response.data.message);
           setErrorMessage(error.message);
         }
       },
@@ -80,7 +82,8 @@ const ForgetPassword = () => {
           )}
           <button
             type="submit"
-            className="text-[#2F3336] md:text-xl font-bold italic">
+            className="text-[#2F3336] md:text-xl font-bold italic"
+          >
             Send OTP
           </button>
         </form>
@@ -89,7 +92,8 @@ const ForgetPassword = () => {
         <div className="flex flex-col h-20 px-5 py-3 mt-6 bg-white border-l-4 border-transparent md:mt-20 focus-within:border-primary">
           <label
             htmlFor="otp"
-            className="font-bold text-[#2F3336] italic md:text-xl">
+            className="font-bold text-[#2F3336] italic md:text-xl"
+          >
             OTP
           </label>
           <input
@@ -110,7 +114,8 @@ const ForgetPassword = () => {
         <div className="flex items-center justify-between mt-8 md:mt-40">
           <button
             className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
-            onClick={handleSendOtp}>
+            onClick={handleSendOtp}
+          >
             Verify OTP
           </button>
           <Link href="/login">
