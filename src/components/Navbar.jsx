@@ -6,6 +6,9 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useAuth } from "@/context/userContext";
 import ApiRequest from "@/utils/apiRequest";
 import { useRouter } from "next/navigation";
+import { FaRegCircleUser } from "react-icons/fa6";
+import { IoMdLogOut } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
@@ -20,12 +23,15 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const res = await ApiRequest.get("/user/logout");
+
+      toast.success(res.data.messsage);
       localStorage.removeItem("token");
       setIsAuthenticated(false);
       setUser({});
       router.push("/");
     } catch (error) {
       setUser({});
+      toast.error(error?.response?.data?.message);
       setIsAuthenticated(false);
     }
   };
@@ -188,21 +194,24 @@ const Navbar = () => {
               className="object-cover w-12 h-12 rounded-full"
               alt="User Avatar"
             />
+            <h6 className=" py-2 text-base font-bold text-left text-[#063173]">
+              {user.fullname}
+            </h6>
             {dropdown && (
-              <div className="dropdown-content absolute -right-16 top-14 z-10 w-48 p-2 mt-2 bg-[#f5f5f5] border rounded shadow-md">
-                <h6 className="px-4 py-2 text-base text-left">
-                  {user.fullname}
-                </h6>
-                <Link href="/profile">
-                  <h1 className="block px-4 py-2 text-lg text-left text-black hover:bg-gray-200">
-                    Profile
-                  </h1>
+              <div className="dropdown-content absolute top-14 z-10 w-48 p-2 mt-2 bg-[#f5f5f5] border rounded shadow-md">
+                <Link
+                  href="/profile"
+                  className="flex items-center  px-4 py-2 gap-2 hover:bg-gray-200"
+                >
+                  <FaRegCircleUser color="#063173" />
+                  <h1 className="text-lg text-left text-black ">Profile</h1>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full px-4 py-2 text-lg text-left text-black hover:bg-gray-200"
+                  className="flex items-center gap-2 w-full px-4 py-2 text-left text-black hover:bg-gray-200"
                 >
-                  Logout
+                  <IoMdLogOut color="#063173" />
+                  <span className="text-lg">Logout</span>
                 </button>
               </div>
             )}
