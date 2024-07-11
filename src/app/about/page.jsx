@@ -22,10 +22,16 @@ const About = () => {
           <div className="flex items-center mt-12 gap-14">
             <Link
               href="/"
-              className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738]">
+              className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738]"
+            >
               Start solving
             </Link>
-            {/* <p className="font-bold text-[#2E80FF] md:text-xl">Need help?</p> */}
+            <Link
+              href="/help-and-support"
+              className="font-bold text-[#2E80FF] md:text-xl"
+            >
+              Need help?
+            </Link>
           </div>
         </div>
         {/* right div with image */}
@@ -48,6 +54,7 @@ const About = () => {
           <div className="space-y-2 text-center md:space-y-4">
             <Image
               src="/about/icon1.svg"
+              alt="alt image"
               width={100}
               height={100}
               className="mx-auto md:w-[140px]  "

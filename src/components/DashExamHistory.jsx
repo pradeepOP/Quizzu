@@ -32,7 +32,13 @@ const DashExamHistory = () => {
   const userScores = latestScores.map((score) => {
     const parsedDate = new Date(score.createdAt);
     const formattedDate = parsedDate.toLocaleDateString();
-    return { ...score, formattedDate, parsedDate };
+    return {
+      ...score,
+      formattedDate,
+      parsedDate,
+      quizTitle: score?.quiz?.title,
+      categoryTitle: score?.quiz?.category?.name,
+    };
   });
 
   useEffect(() => {
@@ -94,6 +100,21 @@ const DashExamHistory = () => {
                 },
               },
             },
+            tooltip: {
+              callbacks: {
+                title: function (tooltipItems) {
+                  const tooltipItem = tooltipItems[0];
+                  const quizTitle =
+                    userScores[tooltipItem.dataIndex]?.quizTitle;
+                  const categoryTitle =
+                    userScores[tooltipItem.dataIndex]?.categoryTitle;
+                  return `Category: ${categoryTitle}\nQuiz: ${quizTitle}`;
+                },
+                label: function (tooltipItem) {
+                  return `Score: ${tooltipItem.raw}`;
+                },
+              },
+            },
           },
           responsive: true,
           maintainAspectRatio: false,
@@ -115,7 +136,7 @@ const DashExamHistory = () => {
               },
               ticks: {
                 beginAtZero: false,
-                callback: function (value, index, values) {
+                callback: function (value) {
                   return value.toFixed(0);
                 },
               },

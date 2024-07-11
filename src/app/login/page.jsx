@@ -8,6 +8,7 @@ import { loginSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/userContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { isAuthenticated, setUser, user, setIsAuthenticated } = useAuth();
@@ -36,11 +37,13 @@ const Login = () => {
             "token",
             JSON.stringify(res?.data?.data?.refreshToken)
           );
+          toast.success(res?.data?.message);
           setIsAuthenticated(true);
           setUser(loggedInUser);
           setIsLoading(false);
           router.push("/");
         } catch (error) {
+          toast.error(error?.response?.data?.message);
           setIsLoading(false);
           setIsAuthenticated(false);
           setErrorMessage(error.response?.data?.message);
@@ -113,7 +116,8 @@ const Login = () => {
               <input type="checkbox" value="" />
               <label
                 htmlFor=""
-                className="pl-1 text-lg italic font-bold md:text-xl text-brown">
+                className="pl-1 text-lg italic font-bold md:text-xl text-brown"
+              >
                 Remember Me
               </label>
             </div>
@@ -135,7 +139,8 @@ const Login = () => {
             <button
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
-              disabled={isLoading}>
+              disabled={isLoading}
+            >
               {isLoading ? "Loading..." : "Login"}
             </button>
             <Link href="/signup">
