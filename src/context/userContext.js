@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    console.log(storedToken);
     if (storedToken && storedToken.length > 0) {
       setToken(JSON.parse(storedToken));
     }
@@ -60,7 +61,8 @@ export const AuthProvider = ({ children }) => {
         setUser,
         token,
         setToken,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

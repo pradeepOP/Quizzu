@@ -7,6 +7,7 @@ import { forgetPasswordSchema } from "@/schemas";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ApiRequest from "@/utils/apiRequest";
+import { toast } from "react-toastify";
 
 const ForgetPassword = () => {
   const router = useRouter();
@@ -26,9 +27,10 @@ const ForgetPassword = () => {
         try {
           setErrorMessage("");
           const res = await ApiRequest.post("/user/forget-password", values);
-          alert(res.data.message);
+          // console.log(res);
+          toast.success(res?.data?.message);
         } catch (error) {
-          console.log(error);
+          toast.error(error.response.data.message);
           setErrorMessage(error.message);
         }
       },

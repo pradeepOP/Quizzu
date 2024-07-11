@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ApiRequest = axios.create({
-  baseURL: "https://localhost:4000/api/v1",
+  baseURL: "http://localhost:4000/api/v1",
   withCredentials: true,
 });
 
@@ -19,7 +19,7 @@ ApiRequest.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("token");
         const res = await axios.post(
-          "https://localhost:4000/api/v1/user/refresh-token",
+          "http://localhost:4000/api/v1/user/refresh-token",
           { refreshToken: JSON.parse(refreshToken) },
           {
             withCredentials: true,

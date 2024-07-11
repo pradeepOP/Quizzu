@@ -15,7 +15,7 @@ const ResetPassword = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   if (!isAuthenticated && !user) {
-    redirect("/login");
+    router.push("/login");
   }
 
   const initialValues = {
@@ -31,7 +31,7 @@ const ResetPassword = () => {
           setErrorMessage("");
           const res = await ApiRequest.post("/user/reset-password", values);
 
-          router.push("/");
+          router.push("/login");
         } catch (error) {
           setErrorMessage(error.response?.data?.message);
         }
