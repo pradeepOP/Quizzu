@@ -66,7 +66,7 @@ const Footer = () => {
                   <Link href="/news">News & Blogs</Link>
                 </li>
                 <li>
-                  <Link href="#">Help & Supports</Link>
+                  <Link href="/help-and-support">Help & Supports</Link>
                 </li>
               </ul>
             </div>
@@ -79,7 +79,7 @@ const Footer = () => {
                   <Link href="how-we-work">How we work</Link>
                 </li>
                 <li className="">
-                  <Link href="tnc">Terms of service</Link>
+                  <Link href="terms-of-service">Terms of service</Link>
                 </li>
                 <li>
                   <Link href="faq">FAQ</Link>

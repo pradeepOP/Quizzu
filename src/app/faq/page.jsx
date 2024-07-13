@@ -2,87 +2,74 @@ import React from "react";
 
 const FAQ = () => {
   return (
-    <div className="faq-section mx-auto container p-4">
-      <h1 className="text-3xl font-semibold mb-8">
-        Frequently Asked Questions
-      </h1>
+    <div className="w-full px-5  mx-auto max-w-[1140px] md:px-0 ">
+      <div className="h-full px-8 pb-10 mt-10 bg-white rounded-xl">
+        <h1 className="pt-6 text-2xl font-bold md:text-4xl text-brown">
+          {" "}
+          Frequently Asked <span className="text-[#C40031]">Questions</span>
+        </h1>
 
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">1. What is this Quizu App?</h2>
-        <p className="mt-2">
-          This Quizu App is a platform where users can take various quizzes on
-          different topics. You can test your knowledge, improve your skills,
-          and track your progress over time.
+        <p className="md:text-lg text-[#0E0F0F] mt-6">
+          Our FAQ section addresses the most common queries we receive from
+          Quizu users. Find quick answers to streamline your learning
+          experience.
         </p>
-      </div>
 
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">2. How do I sign up?</h2>
-        <p className="mt-2">
-          You can sign up by clicking on the &quot;Register&quot; button on the
-          top right corner of the homepage. Fill in the required details and
-          submit the form to create your account.
-        </p>
-      </div>
-
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">3. How do I take a quiz?</h2>
-        <p className="mt-2">
-          After logging in, you can browse the available quizzes by category.
-          Select the quiz you want to take, and click the &quot;Start Quiz&quot;
-          button. Follow the on-screen instructions to answer the questions.
-        </p>
-      </div>
-
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">
-          4. How is my score calculated?
-        </h2>
-        <p className="mt-2">
-          Your score is calculated based on the number of correct answers you
-          provide. Each correct answer gives you points, and your total score is
-          the sum of all points earned.
-        </p>
-      </div>
-
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">5. Can I retake a quiz?</h2>
-        <p className="mt-2">
-          Yes, you can retake any quiz as many times as you like. Your highest
-          score will be recorded, and you can track your improvement over time.
-        </p>
-      </div>
-
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">
-          6. How do I view my quiz history?
-        </h2>
-        <p className="mt-2">
-          You can view your quiz history by going to your profile page. There,
-          you will see a list of all the quizzes you have taken, along with your
-          scores and other details.
-        </p>
-      </div>
-
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">
-          7. Can I create my own quizzes?
-        </h2>
-        <p className="mt-2">
-          Currently, only administrators can create quizzes. However, we are
-          working on a feature that will allow users to create and share their
-          own quizzes.
-        </p>
-      </div>
-
-      <div className="faq-item mb-6">
-        <h2 className="text-2xl font-semibold">8. How do I contact support?</h2>
-        <p className="mt-2">
-          If you need any help or have any questions, you can contact our
-          support team by clicking on the &quot;Contact Us&quot; link at the
-          bottom of the page. Fill in the form, and we will get back to you as
-          soon as possible.
-        </p>
+        {/* content */}
+        <div className="mt-10 space-y-12 md:space-y-8 text-[#0E0F0F]">
+          <div>
+            <h2 className="text-lg font-semibold md:text-xl">
+              How do I reset my password?
+            </h2>
+            <p className="mt-2">
+              You can reset your password by clicking on 'Forgot Password' at
+              the login screen. Follow the prompts to receive an email link for
+              resetting your password.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold md:text-xl">
+              Can I access Quizu on multiple devices?
+            </h2>
+            <p className="mt-2">
+              Yes, you can access Quizu on multiple devices. Simply log in with
+              your credentials on any supported device to continue your learning
+              seamlessly.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold md:text-xl">
+              What should I do if a quiz isn’t loading properly?
+            </h2>
+            <p className="mt-2">
+              Ensure that your internet connection is stable. If the problem
+              persists, try refreshing the page or restarting your browser. If
+              none of these steps work, contact our support team for help
+            </p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold md:text-xl">
+              How can I track my progress on Quizu?
+            </h2>
+            <p className="mt-2">
+              Quizu offers a comprehensive dashboard that tracks your progress.
+              You can view detailed statistics about your performance in various
+              quizzes and subjects through your user profile.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold md:text-xl">
+              Are there any community guidelines for Quizu users?
+            </h2>
+            <p className="mt-2">
+              Yes, we have a set of community guidelines designed to ensure a
+              respectful and productive environment for all users. These include
+              norms around respectful communication, privacy, and intellectual
+              honesty. You can view these guidelines in full on our 'Community
+              Guidelines' page.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
