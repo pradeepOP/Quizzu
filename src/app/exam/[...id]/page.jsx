@@ -8,7 +8,7 @@ import ApiRequest from "@/utils/apiRequest";
 import { toast } from "react-toastify";
 import Timer from "@/components/Timer";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import ConfirmationDialog from "@/components/ConfirmationDialog"; // Import the dialog component
+import ConfirmationDialog from "@/components/Confirmationdialog";
 
 const Exam = () => {
   const { user } = useAuth();
@@ -189,8 +189,7 @@ const Exam = () => {
                           ? "bg-[#C6C2C2] border-2 border-[#C6C2C2] text-[#0E0F0F]"
                           : "border-2 text-[#063173] border-[#063173]"
                       }`}
-                      onClick={() => handleQuestionButtonClick(index)}
-                    >
+                      onClick={() => handleQuestionButtonClick(index)}>
                       {index + 1}
                     </button>
                   ))}
@@ -246,8 +245,7 @@ const Exam = () => {
                     currentQuestionIndex === 0 ? "opacity-60" : ""
                   }`}
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}
-                >
+                  disabled={currentQuestionIndex === 0}>
                   <MdSkipPrevious size={20} />
                   <span className="text-[#0E0F0F] text-lg">Previous</span>
                 </button>
@@ -260,27 +258,24 @@ const Exam = () => {
                   onClick={handleNextQuestion}
                   disabled={
                     currentQuestionIndex === quiz?.questions?.length - 1
-                  }
-                >
+                  }>
                   <span className="text-[#0E0F0F] text-lg">Next</span>
                   <MdSkipNext size={20} />
                 </button>
               </div>
 
-              <div className="flex flex-col md:flex-row justify-end mt-8 md:mt-32 mb-4 md:mb-4 mr-4 md:mr-12 gap-4 mx-4 md:mx-0">
+              <div className="flex flex-col justify-end gap-4 mx-4 mt-8 mb-4 mr-4 md:flex-row md:mt-32 md:mb-4 md:mr-12 md:mx-0">
                 <button
                   type="button"
                   className="text-[#063173] border-2 text-sm md:text-base border-[#063173] py-3 px-4 md:px-6 rounded-xl w-full md:w-auto"
-                  onClick={() => handleMarkToReview(currentQuestion?._id)}
-                >
+                  onClick={() => handleMarkToReview(currentQuestion?._id)}>
                   Mark to Review
                 </button>
                 <button
                   type="button"
                   disabled={quiz?.questions?.length === 0 || loading}
                   className="text-white bg-[#063173] md:text-base py-3 px-4 md:px-6 rounded-xl w-full md:w-40"
-                  onClick={handleConfirmSubmit}
-                >
+                  onClick={handleConfirmSubmit}>
                   {submitLoading ? "Submitting..." : "Submit"}
                 </button>
               </div>
