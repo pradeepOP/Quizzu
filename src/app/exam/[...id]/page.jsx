@@ -9,6 +9,7 @@ import ApiRequest from "@/utils/apiRequest";
 import { toast } from "react-toastify";
 import Timer from "@/components/Timer";
 import PropagateLoader from "react-spinners/PropagateLoader";
+import ConfirmationDialog from "@/components/ConfirmationDialog"; // Import the dialog component
 
 const Exam = () => {
   const { user } = useAuth();
@@ -20,6 +21,7 @@ const Exam = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [initialMinutes, setInitialMinutes] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog
 
   const fetchQuiz = async () => {
     try {
@@ -33,7 +35,7 @@ const Exam = () => {
       setLoading(false);
     }
   };
-  console.log(quiz);
+
   useEffect(() => {
     fetchQuiz();
   }, [id]);
@@ -46,13 +48,14 @@ const Exam = () => {
     );
 
     setQuiz({ ...quiz, questions: updatedQuestions });
-    console.log(updatedQuestions);
   };
+
   const handleNextQuestion = () => {
     if (currentQuestionIndex < quiz?.questions?.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
+
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
@@ -115,6 +118,19 @@ const Exam = () => {
     }
   };
 
+  const handleConfirmSubmit = () => {
+    setIsDialogOpen(true); // Open the dialog
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false); // Close the dialog
+  };
+
+  const handleDialogConfirm = () => {
+    setIsDialogOpen(false); // Close the dialog
+    handleSubmit(elapsedTime); // Submit the quiz
+  };
+
   const currentQuestion = quiz?.questions?.[currentQuestionIndex];
 
   return (
@@ -155,7 +171,8 @@ const Exam = () => {
                         ? "bg-[#C40031] border-2 border-[#C40031] text-white"
                         : "border-2 text-[#063173] border-[#063173]"
                     }`}
-                      onClick={() => handleQuestionButtonClick(index)}>
+                      onClick={() => handleQuestionButtonClick(index)}
+                    >
                       {index + 1}
                     </button>
                   ))}
@@ -207,18 +224,26 @@ const Exam = () => {
               {/* previous and next button */}
               <div className="flex items-center gap-5 mt-16 pl-7">
                 <button
-                  className="flex items-center gap-2"
+                  className={`flex items-center gap-2 ${
+                    currentQuestionIndex === 0 ? "opacity-60" : ""
+                  }`}
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}>
+                  disabled={currentQuestionIndex === 0}
+                >
                   <MdSkipPrevious size={20} />
                   <span className="text-[#0E0F0F] text-lg">Previous</span>
                 </button>
                 <button
-                  className="flex items-center gap-2"
+                  className={`flex items-center gap-2 ${
+                    currentQuestionIndex === quiz?.questions?.length - 1
+                      ? "opacity-60"
+                      : ""
+                  }`}
                   onClick={handleNextQuestion}
                   disabled={
                     currentQuestionIndex === quiz?.questions?.length - 1
-                  }>
+                  }
+                >
                   <span className="text-[#0E0F0F] text-lg">Next</span>
                   <MdSkipNext size={20} />
                 </button>
@@ -229,7 +254,8 @@ const Exam = () => {
                   type="submit"
                   disabled={quiz?.questions?.length === 0 || loading}
                   className=" text-white bg-[#063173] py-3 px-6 rounded-xl"
-                  onClick={() => handleSubmit(elapsedTime)}>
+                  onClick={handleConfirmSubmit}
+                >
                   {submitLoading ? "Submitting..." : "Submit"}
                 </button>
               </div>
@@ -237,6 +263,11 @@ const Exam = () => {
           </div>
         </>
       )}
+      <ConfirmationDialog
+        isOpen={isDialogOpen}
+        onClose={handleDialogClose}
+        onConfirm={handleDialogConfirm}
+      />
     </div>
   );
 };
