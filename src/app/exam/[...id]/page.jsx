@@ -132,7 +132,7 @@ const Exam = () => {
       setSubmitLoading(true);
       const response = await ApiRequest.post("/score", reqBody);
       const scoreId = response?.data?.data?.score?._id;
-      toast.success(response?.data?.message);
+      toast.success("Quiz Submitted Successfully!");
       router.push(`/exam/result/${scoreId}`);
       setSubmitLoading(false);
     } catch (error) {
