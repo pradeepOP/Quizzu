@@ -20,7 +20,7 @@ const Exam = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [initialMinutes, setInitialMinutes] = useState(0);
-  const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const fetchQuiz = async () => {
     try {
