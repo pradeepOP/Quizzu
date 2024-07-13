@@ -13,7 +13,7 @@ const page = () => {
             Welcome to the Quizu Help Center
           </h2>
           <p className="md:text-lg text-[#0E0F0F] mt-5">
-            Whether you're just getting started or looking to deepen your
+            Whether you&apos;re just getting started or looking to deepen your
             knowledge with Quizu, our Help and Support Center is dedicated to
             ensuring a smooth and productive learning experience. Here, you can
             access a wide range of resources designed to answer your questions,

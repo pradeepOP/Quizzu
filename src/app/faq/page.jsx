@@ -22,9 +22,9 @@ const FAQ = () => {
               How do I reset my password?
             </h2>
             <p className="mt-2">
-              You can reset your password by clicking on 'Forgot Password' at
-              the login screen. Follow the prompts to receive an email link for
-              resetting your password.
+              You can reset your password by clicking on &apos;Forgot
+              Password&apos; at the login screen. Follow the prompts to receive
+              an email link for resetting your password.
             </p>
           </div>
           <div>
@@ -39,7 +39,7 @@ const FAQ = () => {
           </div>
           <div>
             <h2 className="text-lg font-semibold md:text-xl">
-              What should I do if a quiz isn’t loading properly?
+              What should I do if a quiz isn&apos;t loading properly?
             </h2>
             <p className="mt-2">
               Ensure that your internet connection is stable. If the problem
@@ -65,8 +65,8 @@ const FAQ = () => {
               Yes, we have a set of community guidelines designed to ensure a
               respectful and productive environment for all users. These include
               norms around respectful communication, privacy, and intellectual
-              honesty. You can view these guidelines in full on our 'Community
-              Guidelines' page.
+              honesty. You can view these guidelines in full on our
+              &apos;Community Guidelines&apos; page.
             </p>
           </div>
         </div>
