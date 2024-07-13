@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
-import { PropagateLoader } from "react-spinners";
-import ApiRequest from "@/utils/apiRequest";
 import BookCard from "@/components/BookCard";
+import ApiRequest from "@/utils/apiRequest";
+import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { PropagateLoader } from "react-spinners";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
