@@ -1,6 +1,5 @@
 "use client";
 import QuestionCard from "@/components/QuestionCard";
-import Image from "next/image";
 import { MdSkipPrevious, MdSkipNext } from "react-icons/md";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -43,7 +42,25 @@ const Exam = () => {
   const handleOptionSelect = (questionId, option) => {
     const updatedQuestions = quiz.questions.map((question) =>
       question._id === questionId
-        ? { ...question, selectedOption: option, attempted: true }
+        ? {
+            ...question,
+            selectedOption: option,
+            attempted: true,
+            marked: false,
+          }
+        : question
+    );
+
+    setQuiz({ ...quiz, questions: updatedQuestions });
+  };
+
+  const handleMarkToReview = (questionId) => {
+    const updatedQuestions = quiz.questions.map((question) =>
+      question._id === questionId
+        ? {
+            ...question,
+            marked: !question.marked,
+          }
         : question
     );
 
@@ -165,12 +182,13 @@ const Exam = () => {
                   {quiz?.questions?.map((question, index) => (
                     <button
                       key={index}
-                      className={` w-8 h-8 rounded-xl
-                    ${
-                      question.attempted
-                        ? "bg-[#C40031] border-2 border-[#C40031] text-white"
-                        : "border-2 text-[#063173] border-[#063173]"
-                    }`}
+                      className={` w-8 h-8 rounded-xl ${
+                        question.attempted
+                          ? "bg-[#C40031] border-2 border-[#C40031] text-white"
+                          : question.marked
+                          ? "bg-[#C6C2C2] border-2 border-[#C6C2C2] text-[#0E0F0F]"
+                          : "border-2 text-[#063173] border-[#063173]"
+                      }`}
                       onClick={() => handleQuestionButtonClick(index)}
                     >
                       {index + 1}
@@ -195,14 +213,14 @@ const Exam = () => {
                       Unattempted
                     </span>
                   </div>
-                  {/* <div className="flex items-center gap-4">
-                  <span className="px-3 py-1.5 rounded-xl bg-[#C6C2C2] border-2 text-[#063173] border-[#063173]">
-                    C
-                  </span>
-                  <span className="text-[#0E0F0F] text-base font-medium">
-                    Marked to review
-                  </span>
-                </div> */}
+                  <div className="flex items-center gap-4">
+                    <span className="px-3 py-1.5 rounded-xl bg-[#C6C2C2] border-2 text-[#063173] border-[#063173]">
+                      C
+                    </span>
+                    <span className="text-[#0E0F0F] text-base font-medium">
+                      Marked to review
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -249,11 +267,18 @@ const Exam = () => {
                 </button>
               </div>
 
-              <div className="flex justify-end mt-32 mb-4 mr-12">
+              <div className="flex flex-col md:flex-row justify-end mt-8 md:mt-32 mb-4 md:mb-4 mr-4 md:mr-12 gap-4 mx-4 md:mx-0">
                 <button
-                  type="submit"
+                  type="button"
+                  className="text-[#063173] border-2 text-sm md:text-base border-[#063173] py-3 px-4 md:px-6 rounded-xl w-full md:w-auto"
+                  onClick={() => handleMarkToReview(currentQuestion?._id)}
+                >
+                  Mark to Review
+                </button>
+                <button
+                  type="button"
                   disabled={quiz?.questions?.length === 0 || loading}
-                  className=" text-white bg-[#063173] py-3 px-6 rounded-xl"
+                  className="text-white bg-[#063173] md:text-base py-3 px-4 md:px-6 rounded-xl w-full md:w-40"
                   onClick={handleConfirmSubmit}
                 >
                   {submitLoading ? "Submitting..." : "Submit"}
