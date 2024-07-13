@@ -21,6 +21,7 @@ const Exam = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [initialMinutes, setInitialMinutes] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const fetchQuiz = async () => {
     try {
@@ -105,6 +106,10 @@ const Exam = () => {
   };
 
   const handleSubmit = async (elapsedTime) => {
+    if (submitted) return;
+
+    setSubmitted(true);
+
     const selectedOptions = quiz.questions.map((question) => ({
       questionId: question._id,
       selectedOption: question.selectedOption || "",
@@ -127,6 +132,7 @@ const Exam = () => {
       setSubmitLoading(true);
       const response = await ApiRequest.post("/score", reqBody);
       const scoreId = response?.data?.data?.score?._id;
+      toast.success(response?.data?.message);
       router.push(`/exam/result/${scoreId}`);
       setSubmitLoading(false);
     } catch (error) {
@@ -136,16 +142,16 @@ const Exam = () => {
   };
 
   const handleConfirmSubmit = () => {
-    setIsDialogOpen(true); // Open the dialog
+    setIsDialogOpen(true);
   };
 
   const handleDialogClose = () => {
-    setIsDialogOpen(false); // Close the dialog
+    setIsDialogOpen(false);
   };
 
   const handleDialogConfirm = () => {
-    setIsDialogOpen(false); // Close the dialog
-    handleSubmit(elapsedTime); // Submit the quiz
+    setIsDialogOpen(false);
+    handleSubmit(elapsedTime);
   };
 
   const currentQuestion = quiz?.questions?.[currentQuestionIndex];
@@ -267,14 +273,14 @@ const Exam = () => {
               <div className="flex flex-col justify-end gap-4 mx-4 mt-8 mb-4 mr-4 md:flex-row md:mt-32 md:mb-4 md:mr-12 md:mx-0">
                 <button
                   type="button"
-                  className="text-[#063173] border-2 text-sm md:text-base border-[#063173] py-3 px-4 md:px-6 rounded-xl w-full md:w-auto"
+                  className="text-[#063173] border-2 text-sm md:text-base border-[#063173] py-3 px-4 md:px-6 rounded-xl w-full md:w-auto hover:bg-[#063173] hover:text-white duration-300"
                   onClick={() => handleMarkToReview(currentQuestion?._id)}>
                   Mark to Review
                 </button>
                 <button
                   type="button"
                   disabled={quiz?.questions?.length === 0 || loading}
-                  className="text-white bg-[#063173] md:text-base py-3 px-4 md:px-6 rounded-xl w-full md:w-40"
+                  className="text-white bg-[#063173] hover:bg-[#184286] duration-300 md:text-base py-3 px-4 md:px-6 rounded-xl w-full md:w-40"
                   onClick={handleConfirmSubmit}>
                   {submitLoading ? "Submitting..." : "Submit"}
                 </button>

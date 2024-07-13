@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import ApiRequest from "@/utils/apiRequest";
 import { useAuth } from "@/context/userContext";
@@ -35,16 +35,24 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Username
         </span>
-        <span className="p-3 border-2 text-[#0E0F0F] md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14 md:min-w-[200px]">
-          {user?.fullname}
+        <span className=" w-full text-[#0E0F0F] md:text-lg md:w-4/5 md:min-w-[200px] flex items-center">
+          <span className="hidden sm:hidden  md:block text-[#9E9E9E] md:text-lg text-sm rounded-l-xl md:h-14 md:w-1/3 border-2 p-3  border-[#CFCFCF] border-r-[#9E9E9E] ">
+            https://quizu.com/
+          </span>
+          <div className="w-full md:w-2/3 md:border-l-0 text-sm md:text-lg border-2 p-3 md:h-14 border-[#CFCFCF] rounded-xl  md:rounded-l-none  ">
+            {user?.fullname}
+          </div>
         </span>
+        {/* <span className="p-3 border-2 text-[#0E0F0F] md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14 md:min-w-[200px]">
+          {user?.fullname}
+        </span> */}
       </div>
       {/* email */}
       <div className="flex flex-col items-start justify-between gap-1 md:flex-row md:items-center">
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Email
         </span>
-        <span className="p-3 border-2 text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14  md:min-w-[200px]">
+        <span className="p-3 border-2 text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 md:h-14  md:min-w-[200px]">
           {user?.email}
         </span>
       </div>
@@ -53,14 +61,13 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Mobile No.
         </span>
-        <span className="p-3 border-2 tracking-wider text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 h-14  md:min-w-[200px]">
+        <span className="p-3 border-2 tracking-wider text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 md:h-14  md:min-w-[200px]">
           {user?.phNumber ? user.phNumber : ""}
         </span>
       </div>
       <button
         onClick={handleClickOpen}
-        className="px-8 py-2 mt-4 tracking-wider text-white bg-[#063173] rounded-xl"
-      >
+        className="px-8 py-2 mt-4 tracking-wider text-white bg-[#063173] hover:bg-[#184286] duration-300 rounded-xl">
         Edit
       </button>
 
@@ -72,8 +79,7 @@ const DashProfile = () => {
               <button
                 type="button"
                 onClick={handleClose}
-                className="text-2xl text-[#0E0F0F]"
-              >
+                className="text-2xl text-[#0E0F0F]">
                 x
               </button>
             </div>
@@ -83,15 +89,13 @@ const DashProfile = () => {
                 phNumber: user.phNumber,
               }}
               validationSchema={profileUpdateSchema}
-              onSubmit={handleSubmit}
-            >
+              onSubmit={handleSubmit}>
               {({ isSubmitting }) => (
                 <Form className="space-y-4">
                   <div className="flex flex-col">
                     <label
                       htmlFor="fullname"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                      className="block text-sm font-medium text-gray-700">
                       Full Name
                     </label>
                     <Field
@@ -110,8 +114,7 @@ const DashProfile = () => {
                   <div className="flex flex-col">
                     <label
                       htmlFor="phNumber"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                      className="block text-sm font-medium text-gray-700">
                       Mobile No.
                     </label>
                     <Field
@@ -130,8 +133,7 @@ const DashProfile = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-4 py-2 text-white bg-[#063173] rounded-xl"
-                    >
+                      className="px-4 py-2 text-white bg-[#063173] hover:bg-[#184286] duration-300 rounded-xl">
                       Save
                     </button>
                   </div>

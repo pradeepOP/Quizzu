@@ -90,11 +90,11 @@ const Footer = () => {
             {/* Contact Us Section */}
             <div className="w-full lg:w-auto">
               <h2 className="mb-4 text-lg font-bold">Contact Us</h2>
-              <ul className="space-y-4  text-[#0E0F0F]">
+              <ul className="space-y-4  text-[#0E0F0F] ">
                 <li className="">Kathmandu, Nepal</li>
                 <li className="">+977 01 4578961</li>
-                <li className="">connect@quizu.com.np</li>
-                <li>quizu.com.np</li>
+                <li className="cursor-pointer">connect@quizu.com.np</li>
+                <li className="cursor-pointer">quizu.com.np</li>
               </ul>
             </div>
           </div>
