@@ -39,7 +39,7 @@ const DashProfile = () => {
           <span className="hidden sm:hidden  md:block text-[#9E9E9E] md:text-lg text-sm rounded-l-xl md:h-14 md:w-1/3 border-2 p-3  border-[#CFCFCF] border-r-[#9E9E9E] ">
             https://quizu.com/
           </span>
-          <div className="w-full md:w-2/3 md:border-l-0 text-sm md:text-lg border-2 p-3 md:h-14 border-[#CFCFCF] rounded-xl  md:rounded-l-none  ">
+          <div className="w-full md:w-2/3 md:border-l-0 text-sm md:text-lg border-2 p-3 h-12 md:h-14 border-[#CFCFCF] rounded-xl  md:rounded-l-none  ">
             {user?.fullname}
           </div>
         </span>
@@ -52,7 +52,7 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Email
         </span>
-        <span className="p-3 border-2 text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 md:h-14  md:min-w-[200px]">
+        <span className="p-3 border-2 h-12 text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 md:h-14  md:min-w-[200px]">
           {user?.email}
         </span>
       </div>
@@ -61,7 +61,7 @@ const DashProfile = () => {
         <span className="text-[#000000] font-bold text-sm md:text-lg">
           Mobile No.
         </span>
-        <span className="p-3 border-2 tracking-wider text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 md:h-14  md:min-w-[200px]">
+        <span className="p-3 border-2 tracking-wider  text-[#0E0F0F] text-sm md:text-lg border-[#CFCFCF] rounded-xl w-full md:w-4/5 md:h-14  md:min-w-[200px] h-12">
           {user?.phNumber ? user.phNumber : ""}
         </span>
       </div>
