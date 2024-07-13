@@ -1,14 +1,14 @@
 "use client";
+import ConfirmationDialog from "@/components/Confirmationdialog";
 import QuestionCard from "@/components/QuestionCard";
-import { MdSkipPrevious, MdSkipNext } from "react-icons/md";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import Timer from "@/components/Timer";
 import { useAuth } from "@/context/userContext";
 import ApiRequest from "@/utils/apiRequest";
-import { toast } from "react-toastify";
-import Timer from "@/components/Timer";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import ConfirmationDialog from "@/components/Confirmationdialog";
+import { toast } from "react-toastify";
 
 const Exam = () => {
   const { user } = useAuth();

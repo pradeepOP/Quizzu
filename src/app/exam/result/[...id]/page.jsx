@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import ApiRequest from "@/utils/apiRequest";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PropagateLoader } from "react-spinners";
