@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ApiRequest = axios.create({
-  baseURL: "http://localhost:4000/api/v1",
+  baseURL: "https://quizu-backend-1.onrender.com/api/v1",
   withCredentials: true,
 });
 
@@ -19,7 +19,7 @@ ApiRequest.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("token");
         const res = await axios.post(
-          "http://localhost:4000/api/v1/user/refresh-token",
+          "https://quizu-backend-1.onrender.com/api/v1/user/refresh-token",
           { refreshToken: JSON.parse(refreshToken) },
           {
             withCredentials: true,
