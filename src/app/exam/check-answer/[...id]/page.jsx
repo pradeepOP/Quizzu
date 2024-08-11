@@ -25,14 +25,14 @@ const CheckAnswer = () => {
     },
   });
 
-  console.log(result);
+  // console.log(result);
   useEffect(() => {
     const fetchResult = async () => {
       try {
         setLoading(true);
         const res = await ApiRequest.get(`/score/${id}`);
         const scoreData = res.data?.data?.score;
-        console.log("scoreData", scoreData);
+        // console.log("scoreData", scoreData);
 
         setResult({
           score: scoreData.score,
@@ -114,7 +114,8 @@ const CheckAnswer = () => {
                       ? " border-2 text-[#063173] border-[#063173] "
                       : "border-2  bg-[#C40031] text-white border-[#C40031]"
                   }`}
-                      onClick={() => handleQuestionButtonClick(index)}>
+                      onClick={() => handleQuestionButtonClick(index)}
+                    >
                       {index + 1}
                     </button>
                   ))}
@@ -166,7 +167,8 @@ const CheckAnswer = () => {
                 <button
                   className="flex items-center gap-2"
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}>
+                  disabled={currentQuestionIndex === 0}
+                >
                   <MdSkipPrevious size={20} />
                   <span className="text-[#0E0F0F] text-lg">Previous</span>
                 </button>
@@ -175,7 +177,8 @@ const CheckAnswer = () => {
                   onClick={handleNextQuestion}
                   disabled={
                     currentQuestionIndex === result?.quiz?.questions?.length - 1
-                  }>
+                  }
+                >
                   <span className="text-[#0E0F0F] text-lg">Next</span>
                   <MdSkipNext size={20} />
                 </button>
@@ -184,12 +187,14 @@ const CheckAnswer = () => {
               <div className="flex flex-col gap-3 pb-8 pl-6 mt-12 md:block md:space-x-6">
                 <Link
                   href="/"
-                  className="text-white bg-[#063173] hover:bg-[#184286] duration-300 w-2/3 text-center border-2 border-[#063173] py-3 px-6 rounded-xl">
+                  className="text-white bg-[#063173] w-2/3 text-center border-2 border-[#063173] py-3 px-6 rounded-xl"
+                >
                   Return Home
                 </Link>
                 <Link
                   href={`/exam/${result?.quiz?.quizId}`}
-                  className="text-[#063173] hover:bg-[#063173] duration-300 hover:text-white bg-[#f7f7f7] w-2/3 text-center border-2 border-[#063173] py-3 px-6 rounded-xl">
+                  className="text-[#063173] bg-[#f7f7f7] w-2/3 text-center border-2 border-[#063173] py-3 px-6 rounded-xl"
+                >
                   Try Again
                 </Link>
               </div>

@@ -11,12 +11,12 @@ const BookDetail = () => {
   const [loading, setLoading] = useState(false);
   // console.log(id);
 
-  console.log(book);
+  // console.log(book);
   const fetchBookDetails = async () => {
     try {
       setLoading(true);
       const res = await ApiRequest.get(`/book/${id}`);
-      console.log(res);
+      // console.log(res);
       setBook(res?.data?.data?.singleBook);
       setLoading(false);
     } catch (error) {

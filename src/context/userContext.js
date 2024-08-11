@@ -7,14 +7,18 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
-
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    console.log(storedToken);
-    if (storedToken && storedToken.length > 0) {
-      setToken(JSON.parse(storedToken));
+    try {
+      const storedToken = localStorage.getItem("token");
+
+      if (storedToken && storedToken.length > 0) {
+        setToken(JSON.parse(storedToken));
+      }
+    } catch (error) {
+      console.error("Error parsing token from storage:", error);
+      setToken("");
     }
   }, []);
 
@@ -34,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         const res = await ApiRequest.get("/user/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         if (res?.data?.data?.user) {
           setUser(res.data.data.user);
           setIsAuthenticated(true);
@@ -41,9 +46,10 @@ export const AuthProvider = ({ children }) => {
           throw new Error("User data not found");
         }
       } catch (error) {
+        console.error("Error fetching user data:", error);
         setUser({});
         setIsAuthenticated(false);
-      } finally {
+        setToken("");
       }
     };
 

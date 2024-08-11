@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 const NewsCard = ({ news }) => {
-  console.log(news);
+  // console.log(news);
   const formattedDate = new Date(news?.createdAt).toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -17,7 +17,7 @@ const NewsCard = ({ news }) => {
           width={1140}
           height={269}
           alt="News Image"
-          className="object-top object-fill  rounded-t-xl max-h-[269px]"
+          className="object-fill md:object-cover object-top  rounded-t-xl max-h-[269px]"
         />
       </div>
       <div className="px-4 bg-white rounded-b-xl">

@@ -15,7 +15,7 @@ const News = () => {
     try {
       setIsLoading(true);
       const res = await ApiRequest.get(`/news?page=${page}&limit=3`);
-      console.log("API Response:", res);
+      // console.log("API Response:", res);
       setNews(res?.data?.data?.news || []);
       setTotalPages(res?.data?.data?.totalPages || 1);
     } catch (error) {
@@ -41,7 +41,7 @@ const News = () => {
     }
   };
 
-  console.log("Current Page:", currentPage, "Total Pages:", totalPages);
+  // console.log("Current Page:", currentPage, "Total Pages:", totalPages);
 
   return (
     <div className="w-full px-5 pb-10 mx-auto md:w-4/5 mt-14 max-w-7xl md:px-10">
@@ -65,7 +65,8 @@ const News = () => {
             {currentPage > 1 && (
               <button
                 onClick={handlePrevPage}
-                className="flex items-center px-4 py-2 text-white bg-gray-600 rounded-md">
+                className="flex items-center px-4 py-2 text-white bg-gray-600 rounded-md"
+              >
                 <IoIosArrowBack className="mr-1" /> Previous
               </button>
             )}
@@ -75,7 +76,8 @@ const News = () => {
             {currentPage < totalPages && (
               <button
                 onClick={handleNextPage}
-                className="flex items-center px-4 py-2 text-white bg-gray-600 rounded-md">
+                className="flex items-center px-4 py-2 text-white bg-gray-600 rounded-md"
+              >
                 Next <IoIosArrowForward className="ml-1" />
               </button>
             )}

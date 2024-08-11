@@ -16,7 +16,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(isAuthenticated, user);
+  // console.log(isAuthenticated, user);
 
   const initialValues = {
     email: "",
@@ -32,7 +32,7 @@ const Login = () => {
           const res = await ApiRequest.post("/user/login", values);
           const { loggedInUser } = res?.data?.data;
 
-          console.log(res);
+          // console.log(res);
           localStorage.setItem(
             "token",
             JSON.stringify(res?.data?.data?.refreshToken)
@@ -112,7 +112,7 @@ const Login = () => {
           )}
           {/* check box and forget password */}
           <div className="flex items-center justify-between pt-9">
-            <div>
+            {/* <div>
               <input type="checkbox" value="" />
               <label
                 htmlFor=""
@@ -120,7 +120,7 @@ const Login = () => {
               >
                 Remember Me
               </label>
-            </div>
+            </div> */}
             <Link href="/forget-password">
               <p className="text-lg italic font-bold md:text-xl text-brown">
                 Forgot Password?
