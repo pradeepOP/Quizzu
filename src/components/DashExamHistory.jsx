@@ -17,7 +17,7 @@ const DashExamHistory = () => {
     const fetchData = async () => {
       try {
         const response = await ApiRequest.get(`/score/profile/${user._id}`);
-        console.log(response);
+        // console.log(response);
         setScoreData(response?.data?.data?.scores);
       } catch (error) {
         console.error("Error fetching user scores:", error);

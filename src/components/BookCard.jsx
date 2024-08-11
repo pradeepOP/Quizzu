@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 const BookCard = ({ book }) => {
-  console.log(book);
+  // console.log(book);
   return (
     <Link href={`/books/${book?._id}`}>
       <div className="w-[364px] h-[325px] ">

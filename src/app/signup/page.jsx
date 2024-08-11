@@ -36,7 +36,7 @@ const Signup = () => {
           setIsLoading(true);
           setErrorMessage("");
           const res = await ApiRequest.post("/user/register", values);
-          console.log(res);
+          // console.log(res);
           setIsAuthenticated(true);
           setIsLoading(false);
           router.push("/profile");

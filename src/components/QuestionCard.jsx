@@ -14,7 +14,7 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
     const option = e.target.value;
     setSelectedOption(option);
     onOptionSelect(question._id, option);
-    console.log(question._id, option);
+    // console.log(question._id, option);
   };
 
   return (
@@ -47,7 +47,8 @@ const QuestionCard = ({ question, questionIndex, onOptionSelect }) => {
               />
               <label
                 htmlFor={`option${index}`}
-                className="text-[#0E0F0F] text-lg">
+                className="text-[#0E0F0F] text-lg"
+              >
                 {option}
               </label>
             </div>
