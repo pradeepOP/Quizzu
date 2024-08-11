@@ -8,7 +8,7 @@ import ApiRequest from "@/utils/apiRequest";
 import { toast } from "react-toastify";
 import Timer from "@/components/Timer";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import ConfirmationDialog from "@/components/ConfirmationDialog"; // Import the dialog component
+import ConfirmationDialog from "@/components/Confirmationdialog";
 
 const Exam = () => {
   const { user } = useAuth();
@@ -20,7 +20,8 @@ const Exam = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [initialMinutes, setInitialMinutes] = useState(0);
-  const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const fetchQuiz = async () => {
     try {
@@ -105,6 +106,10 @@ const Exam = () => {
   };
 
   const handleSubmit = async (elapsedTime) => {
+    if (submitted) return;
+
+    setSubmitted(true);
+
     const selectedOptions = quiz.questions.map((question) => ({
       questionId: question._id,
       selectedOption: question.selectedOption || "",
@@ -127,6 +132,7 @@ const Exam = () => {
       setSubmitLoading(true);
       const response = await ApiRequest.post("/score", reqBody);
       const scoreId = response?.data?.data?.score?._id;
+      toast.success(response?.data?.message);
       router.push(`/exam/result/${scoreId}`);
       setSubmitLoading(false);
     } catch (error) {
@@ -136,16 +142,16 @@ const Exam = () => {
   };
 
   const handleConfirmSubmit = () => {
-    setIsDialogOpen(true); // Open the dialog
+    setIsDialogOpen(true);
   };
 
   const handleDialogClose = () => {
-    setIsDialogOpen(false); // Close the dialog
+    setIsDialogOpen(false);
   };
 
   const handleDialogConfirm = () => {
-    setIsDialogOpen(false); // Close the dialog
-    handleSubmit(elapsedTime); // Submit the quiz
+    setIsDialogOpen(false);
+    handleSubmit(elapsedTime);
   };
 
   const currentQuestion = quiz?.questions?.[currentQuestionIndex];
@@ -189,8 +195,7 @@ const Exam = () => {
                           ? "bg-[#C6C2C2] border-2 border-[#C6C2C2] text-[#0E0F0F]"
                           : "border-2 text-[#063173] border-[#063173]"
                       }`}
-                      onClick={() => handleQuestionButtonClick(index)}
-                    >
+                      onClick={() => handleQuestionButtonClick(index)}>
                       {index + 1}
                     </button>
                   ))}
@@ -246,8 +251,7 @@ const Exam = () => {
                     currentQuestionIndex === 0 ? "opacity-60" : ""
                   }`}
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}
-                >
+                  disabled={currentQuestionIndex === 0}>
                   <MdSkipPrevious size={20} />
                   <span className="text-[#0E0F0F] text-lg">Previous</span>
                 </button>
@@ -260,27 +264,24 @@ const Exam = () => {
                   onClick={handleNextQuestion}
                   disabled={
                     currentQuestionIndex === quiz?.questions?.length - 1
-                  }
-                >
+                  }>
                   <span className="text-[#0E0F0F] text-lg">Next</span>
                   <MdSkipNext size={20} />
                 </button>
               </div>
 
-              <div className="flex flex-col md:flex-row justify-end mt-8 md:mt-32 mb-4 md:mb-4 mr-4 md:mr-12 gap-4 mx-4 md:mx-0">
+              <div className="flex flex-col justify-end gap-4 mx-4 mt-8 mb-4 mr-4 md:flex-row md:mt-32 md:mb-4 md:mr-12 md:mx-0">
                 <button
                   type="button"
-                  className="text-[#063173] border-2 text-sm md:text-base border-[#063173] py-3 px-4 md:px-6 rounded-xl w-full md:w-auto"
-                  onClick={() => handleMarkToReview(currentQuestion?._id)}
-                >
+                  className="text-[#063173] border-2 text-sm md:text-base border-[#063173] py-3 px-4 md:px-6 rounded-xl w-full md:w-auto hover:bg-[#063173] hover:text-white duration-300"
+                  onClick={() => handleMarkToReview(currentQuestion?._id)}>
                   Mark to Review
                 </button>
                 <button
                   type="button"
                   disabled={quiz?.questions?.length === 0 || loading}
-                  className="text-white bg-[#063173] md:text-base py-3 px-4 md:px-6 rounded-xl w-full md:w-40"
-                  onClick={handleConfirmSubmit}
-                >
+                  className="text-white bg-[#063173] hover:bg-[#184286] duration-300 md:text-base py-3 px-4 md:px-6 rounded-xl w-full md:w-40"
+                  onClick={handleConfirmSubmit}>
                   {submitLoading ? "Submitting..." : "Submit"}
                 </button>
               </div>

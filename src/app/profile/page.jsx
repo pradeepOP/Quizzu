@@ -96,6 +96,7 @@ const Profile = () => {
                     alt="profile"
                     width={32}
                     height={32}
+                    className="duration-300 hover:scale-110"
                   />
                 </label>
                 <input

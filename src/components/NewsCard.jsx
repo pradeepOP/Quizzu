@@ -33,7 +33,7 @@ const NewsCard = ({ news }) => {
             : news?.description}
         </p>
         <Link href={`news/${news?._id}`}>
-          <button className="my-4 bg-[#063173] hover:bg-[#012b6d] duration-300 text-white font-bold px-7 py-3 rounded-xl">
+          <button className="my-4 bg-[#063173] hover:bg-[#00225c] duration-300 text-white font-bold px-7 py-3 rounded-xl">
             Read More
           </button>
         </Link>

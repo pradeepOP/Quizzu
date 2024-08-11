@@ -22,14 +22,12 @@ const About = () => {
           <div className="flex items-center mt-12 gap-14">
             <Link
               href="/"
-              className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738]"
-            >
+              className="px-6 py-4 text-white font-bold md:text-xl tracking-wide  bg-[#122738] hover:bg-[#081d2e] duration-300">
               Start solving
             </Link>
             <Link
               href="/help-and-support"
-              className="font-bold text-[#2E80FF] md:text-xl"
-            >
+              className="font-bold text-[#2E80FF] hover:text-[#176dea] duration-300 md:text-xl">
               Need help?
             </Link>
           </div>

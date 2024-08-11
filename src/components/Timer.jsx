@@ -10,12 +10,13 @@ const Timer = ({ initialMinutes, onTimerEnd, onTimeUpdate }) => {
       const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
       const remainingTime = initialMinutes * 60 - elapsed;
 
-      setTime(remainingTime);
-      onTimeUpdate(elapsed);
-
       if (remainingTime <= 0) {
         clearInterval(timerRef.current);
+        setTime(0);
         onTimerEnd(initialMinutes * 60);
+      } else {
+        setTime(remainingTime);
+        onTimeUpdate(elapsed);
       }
     }, 1000);
 
