@@ -67,7 +67,8 @@ const DashProfile = () => {
       </div>
       <button
         onClick={handleClickOpen}
-        className="px-8 py-2 mt-4 tracking-wider text-white bg-[#063173] hover:bg-[#184286] duration-300 rounded-xl">
+        className="px-8 py-2 mt-4 tracking-wider text-white bg-[#063173] hover:bg-[#184286] duration-300 rounded-xl"
+      >
         Edit
       </button>
 
@@ -79,7 +80,8 @@ const DashProfile = () => {
               <button
                 type="button"
                 onClick={handleClose}
-                className="text-2xl text-[#0E0F0F]">
+                className="text-2xl text-[#0E0F0F]"
+              >
                 x
               </button>
             </div>
@@ -89,13 +91,15 @@ const DashProfile = () => {
                 phNumber: user.phNumber,
               }}
               validationSchema={profileUpdateSchema}
-              onSubmit={handleSubmit}>
+              onSubmit={handleSubmit}
+            >
               {({ isSubmitting }) => (
                 <Form className="space-y-4">
                   <div className="flex flex-col">
                     <label
                       htmlFor="fullname"
-                      className="block text-sm font-medium text-gray-700">
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Full Name
                     </label>
                     <Field
@@ -114,7 +118,8 @@ const DashProfile = () => {
                   <div className="flex flex-col">
                     <label
                       htmlFor="phNumber"
-                      className="block text-sm font-medium text-gray-700">
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Mobile No.
                     </label>
                     <Field
@@ -133,7 +138,8 @@ const DashProfile = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-4 py-2 text-white bg-[#063173] hover:bg-[#184286] duration-300 rounded-xl">
+                      className="px-4 py-2 text-white bg-[#063173] hover:bg-[#184286] duration-300 rounded-xl"
+                    >
                       Save
                     </button>
                   </div>

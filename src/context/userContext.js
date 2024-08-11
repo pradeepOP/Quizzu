@@ -9,14 +9,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
 
-  // Load token from localStorage on mount
   useEffect(() => {
     try {
       const storedToken = localStorage.getItem("token");
 
       if (storedToken && storedToken.length > 0) {
         setToken(JSON.parse(storedToken));
-        // console.log("Token loaded from storage:", storedToken);
       }
     } catch (error) {
       console.error("Error parsing token from storage:", error);

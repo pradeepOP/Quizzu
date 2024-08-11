@@ -6,20 +6,25 @@ import "chartjs-adapter-date-fns";
 import ApiRequest from "@/utils/apiRequest";
 import { useAuth } from "@/context/userContext";
 import zoomPlugin from "chartjs-plugin-zoom";
+import { PropagateLoader } from "react-spinners";
 
 const DashExamHistory = () => {
   const { user } = useAuth();
   const chartContainer = useRef(null);
   const chartInstance = useRef(null);
   const [scoreData, setScoreData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await ApiRequest.get(`/score/profile/${user._id}`);
         // console.log(response);
+        setLoading(false);
         setScoreData(response?.data?.data?.scores);
       } catch (error) {
+        setLoading(false);
         console.error("Error fetching user scores:", error);
       }
     };
@@ -147,16 +152,21 @@ const DashExamHistory = () => {
       });
     }
   }, [latestScores, userScores]);
-
   return (
     <div className="md:w-[789px] mx-auto h-full pb-10 px-4 pt-2">
       <div className="w-full overflow-x-auto">
-        {scoreData.length === 0 ? (
-          <div className="text-2xl font-semibold text-gray-600">
-            No exam taken yet
-          </div>
+        {!loading ? (
+          scoreData.length > 0 ? (
+            <canvas ref={chartContainer} className="h-[400px]"></canvas>
+          ) : (
+            <div className="flex items-center justify-center h-[50vh]">
+              <p className="text-[#0E0F0F] text-lg ">No exam history found</p>
+            </div>
+          )
         ) : (
-          <canvas ref={chartContainer} className="h-[400px]"></canvas>
+          <div className="flex items-center justify-center h-[50vh]">
+            <PropagateLoader color="#0eb1a6" loading={loading} size={20} />
+          </div>
         )}
       </div>
     </div>
