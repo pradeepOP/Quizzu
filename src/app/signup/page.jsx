@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { registerSchema } from "@/schemas";
 import ApiRequest from "@/utils/apiRequest";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 const Signup = () => {
   const { isAuthenticated, user, setIsAuthenticated } = useAuth();
@@ -55,7 +56,7 @@ const Signup = () => {
         <Image src="/login.png" alt="login" width={526} height={594} />
       </div>
       {/* right div with forms */}
-      <div>
+      <div className="w-[560px]">
         <h1 className="text-xl italic font-bold md:text-3xl text-brown">
           Hello User, you will have a great <br /> journey
         </h1>
@@ -111,9 +112,11 @@ const Signup = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
+            <PasswordStrengthBar password={values.password} />
           </div>
           {errors.password && touched.password ? (
-            <p className="px-4 mt-2 text-lg italic text-red-500">
+            <p className="px-4 mt-2 text-lg italic text-red-500 ">
+              {console.log(errors.password)}
               {errors.password}
             </p>
           ) : null}
@@ -126,7 +129,8 @@ const Signup = () => {
             <button
               type="submit"
               className="px-4 py-3 italic font-bold text-white duration-300 md:text-xl bg-primary hover:bg-primary/80"
-              disabled={isLoading}>
+              disabled={isLoading}
+            >
               {isLoading ? "Loading..." : "Signup"}
             </button>
             <Link href="/login">
