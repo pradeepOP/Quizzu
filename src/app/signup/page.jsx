@@ -118,7 +118,6 @@ const Signup = () => {
           </div>
           {errors.password && touched.password ? (
             <p className="px-4 mt-2 text-lg italic text-red-500 ">
-              {console.log(errors.password)}
               {errors.password}
             </p>
           ) : null}
