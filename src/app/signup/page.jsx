@@ -112,7 +112,9 @@ const Signup = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <PasswordStrengthBar password={values.password} />
+            {values.password && (
+              <PasswordStrengthBar password={values.password} />
+            )}
           </div>
           {errors.password && touched.password ? (
             <p className="px-4 mt-2 text-lg italic text-red-500 ">
